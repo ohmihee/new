@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="st.css">
+</head>
+<body>
+    <script type="text/javascript">
+    function ale(){
+        alert('정말 삭제하시겠습니까?');
+    }
+    
+    </script>
+{% include 'header.html' %}
+
+<form class="delete_login" action="/delete" method="post">
+    <label for="uemail">userEmail</label>
+    <input type="email" placeholder="input your email" name="uemail" required><br>
+    <label for="upw">Password</label>
+    <input type="password" placeholder="input your password" name="upw" repuired><br>
+    <input class="submit" onclick="ale()"type="submit" placeholder="login">
+</form>
+{% include 'bottom.html' %}
+</body>
+</html>

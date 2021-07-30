@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="st.css">
+</head>
+<body>
+    {% include 'header.html' %}
+    <form action="/modified" method="get">
+        <div>
+            <ul id="inner">
+                <li><p>제목 <span><input name="send_subject" type="text" value="{{subject}}"></span></p></li>
+                <li><p>작성자 <span><input name="writer" type="text" value="{{writer}}"></span></p></li>
+                <li><p>내용 <div><textarea name="content">{{content}}</textarea></div></p></li>
+                <input class="none" name="idx" value='{{idx}}'>
+                <input class="m_complete" type="submit" value="수정완료">
+            </ul>
+        </div>
+        
+    </form>
+        {% include 'bottom.html' %}
+</body>
+
+</html>

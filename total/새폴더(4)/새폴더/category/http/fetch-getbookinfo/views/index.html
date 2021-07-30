@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="bookName">
+        <input type="button" id="bookBtn">
+    </div>
+    <ul id="bookInfo">
+
+    </ul>
+</body>
+<script type="text/javascript">
+    /*document.addEventListener('DOMContentLoaded',getBookInfo)*/
+    let bookBtn = document.querySelector('#bookBtn')
+    let bookName = document.querySelector('#bookName')
+    let ul = document.querySelector('#bookInfo')
+    let li = document.createElement('li')
+
+    
+    // async function getBookInfo(){    
+    // let options = {
+    //     method:"GET",
+    //     headers:{
+    //         "Authorization":"KakaoAK 6a6edcb3952747d14b2f508442194cfd"
+    //     }
+    // }
+    // await fetch(`https://dapi.kakao.com/v2/search/web?sort=accuracy&page=1&size=10&query=%EB%A7%88%EC%8B%9C%EB%A9%9C%EB%A1%9C+%EC%9D%B4%EC%95%BC%EA%B8%B0`,options)
+    // .then(res=>res.json())
+    // .then(data=>console.log(data))
+    // }
+    
+    async function getBookInfo1(){    
+    let options = {
+        method:"GET",
+        headers:{
+            "Authorization":"KakaoAK 6a6edcb3952747d14b2f508442194cfd"
+        }
+    }
+    let url = `https://dapi.kakao.com/v3/search/book?sort=accuracy&page=1&size=10&query=${bookName.value}`
+    let result = await fetch(url,options)
+    let json = await result.json()
+    console.log(bookName,'=======================',json.documents[1])
+    // await fetch(`https://dapi.kakao.com/v3/search/book?sort=accuracy&page=1&size=10&query=${bookName}`,options)
+    // .then(res=>res.json())
+    // .then(data=>console.log(data.documents[0].title))
+    li.innerHTML = json.documents[1].contents
+    }
+    ul.appendChild(li)
+    
+    bookBtn.addEventListener('click',getBookInfo1)
+</script>
+</html>

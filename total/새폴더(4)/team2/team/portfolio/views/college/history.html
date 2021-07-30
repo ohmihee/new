@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/middle.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+    
+    {% include "header.html" %}
+    {% include "middle.html" %}
+    {% set res = facility_img %}
+    {% for item in res %}
+                    <!-- <img src="http://www.kiweb.or.kr/images/college/KakaoTalk_20200228_163156780.png"> -->
+                    <img src="http://localhost:3000/{{item.image}}" alt="슬라이드이미지">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% include "footer.html" %}
+    
+</body>
+</html>

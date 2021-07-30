@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/userlist.css">
+</head>
+<body>
+    <form action="/admin/user_list" method="POST">
+        <input type="submit" value="수강생추가">
+        <div>
+            <label for="Name">이름</label>
+            <input type="text" id="Name" name="userName">
+        </div>
+        <div>
+            <label for="Id">아이디</label>
+            <input type="text" id="Id" name="userIdx">
+        </div>
+        <div>
+            <label for="Psw">비밀번호</label>
+            <input type="password" id="Psw" name="userPsw">
+        </div>
+        <div>
+            <label for="CourseName">수강명</label>
+            <input type="text" id="CourseName" name="courseName">
+        </div>
+        <div>
+            <p>수강료 지급상황</p>
+            <label for="Pay_ok">지급완료</label>
+            <input type="radio" id="Pay_ok" name="paycheck" value="0">
+            <label for="Pay_no">미지급</label>
+            <input type="radio" id="Pay_no" name="paycheck" value="1" checked>
+        </div>
+        <div>
+            <label for="Birth">생년월일</label>
+            <input type="date" id="Birth" name="userBirth">
+        </div>
+        <div>
+            <label for="StartDate">등록일</label>
+            <input type="date" id="StartDate" name="created_at">
+        </div>
+        <div>
+            <label for="Tel">연락처</label>
+            <input type="number" id="Tel" name="userTel">
+        </div>
+            <label for="Address">주소</label>
+            <input type="text" id="Address" name="userAddress">
+        </div>
+        <div>
+            <p>구직상황</p>
+            <label for="Job_no">구직 진행중</label>
+            <input type="radio" id="JobS_ok" name="employmentStatus" value="0" checked>
+            <label for="Job_ok">구직 완료</label>
+            <input type="radio" id="Job_no" name="employmentStatus" value="1">            
+        </div>
+        <div>
+            <p>포트폴리오</p>
+            <label for="portfolio_x">미완성</label>
+            <input type="radio" id="portfolio_x" name="portfolio" value="0">
+            <label for="portfolio_o">완성</label>
+            <input type="radio" id="portfolio_o" name="portfolio" value="1">
+        </div>
+        <div>
+            <label for="Etc">기타사항</label>
+            <input type="text" id="Etc" name="userEtc">
+        </div><div>
+            <label for="Img">사진</label>
+            <input type="file" id="Img" name="userImg">
+        </div>
+
+
+    </form>
+    <table border="1">
+        <th>이름</th>
+        <th>아이디</th>
+        <th>비밀번호</th>
+        <th>수강명</th>
+        <th>수강료 지급상태</th>
+        <th>생년월일</th>
+        <th>등록일</th>
+        <th>연락처</th>
+        <th>주소</th>
+        <th>취업여부</th>
+        <th>포트폴리오</th>
+        <th>기타사항</th>
+        <th>사진</th>
+        
+        {% set res = resu %}
+        {% for item in res %}
+        <tr>
+            <td>{{res[loop.index-1].userName}}</td>
+            <td>{{res[loop.index-1].userIdx}}</td>
+            <td>{{res[loop.index-1].userPsw}}</td>
+            <td>{{res[loop.index-1].courseName}}</td>
+            <td>{{res[loop.index-1].paycheck}}</td>
+            <td>{{res[loop.index-1].userBirth}}</td>
+            <td>{{res[loop.index-1].created_at}}</td>
+            <td>{{res[loop.index-1].userTel}}</td>
+            <td>{{res[loop.index-1].userAddress}}</td>
+            <td>{{res[loop.index-1].employmentStatus}}</td>
+            <td>{{res[loop.index-1].portfolio}}</td>
+            <td>{{res[loop.index-1].userEtc}}</td>
+            <td>{{res[loop.index-1].userImg}}</td>
+        </tr>        
+        {% endfor %}
+        <!-- <tr>
+            <td>name</td>
+            <td>idx</td>
+            <td>psw</td>
+            <td>courseName</td>
+            <td>paycheck</td>
+            <td>userBirth</td>
+            <td>created_at</td>
+            <td>userTel</td>
+            <td>userAddress</td>
+            <td>employmentStatus</td>
+            <td>portfolio</td>
+            <td>userEtc</td>
+            <td>userImg</td>
+        </tr> -->
+    </table>
+
+</body>
+</html>

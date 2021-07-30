@@ -1,0 +1,257 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+body{
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: #fffef2;
+}
+#header{
+    width:100vw;
+    height: 73vh;
+}
+#header_top{
+    width:100vw;
+    height: 5vh;
+    background-color: #333;
+    color:white;
+    display: flex;
+    text-align: center;
+}
+#header_top_content{
+    margin:0.7vh auto;
+}
+#banner{
+    width: 100vw;
+    height: 65vh;
+}
+#banner>img{
+    width:100vw;
+    height: 70vh;
+    position: absolute;
+}
+
+#banner_menu{
+    width:100vw;
+    height: 5vh;
+    position: absolute;
+    z-index: 3;
+    display: inline-flex;
+}
+#banner_menu>div{
+    width:33vw;
+    height: 5vh;
+    display: inline-flex; 
+    margin:2vh 3vw;
+}
+#banner_menu>div:nth-child(3){
+    display: flex;
+    flex-direction:row-reverse;
+
+}
+#banner_menu>div>ul>li{
+    display:inline-flex;
+    font-size: 0.8vw;
+    margin-left: 1vw;
+    text-align: center;
+}
+#right_menu>li>span>p{
+    position: absolute;
+    box-sizing: border-box;
+}
+
+#right_menu>li:nth-child(1)>span:hover >p{
+    width:3.4vw;
+    height: 3vh;
+    animation: menuLine1 1s;
+    animation-fill-mode: forwards;
+    border-bottom: 1px solid black;
+}
+@keyframes menuLine1{
+    from{
+        width:0vw;
+       
+        
+    }to{
+        width:3vw;
+    }
+       
+}
+#right_menu>li:nth-child(2)>span:hover >p, #right_menu>li:nth-child(4)>span:hover >p{
+    width:3.4vw;
+    height: 3vh;
+    padding-left: 0.3vw;
+    animation: menuLine2 1s;
+    animation-fill-mode: forwards;
+    border-bottom: 1px solid black;
+}
+@keyframes menuLine2{
+    from{
+        width:0vw;
+       
+        
+    }to{
+        width:1.5vw;
+    }
+       
+}
+#right_menu>li:nth-child(3)>span:hover >p{
+    width:3.4vw;
+    height: 3vh;
+    padding-left: 0.3vw;
+    animation: menuLine3 1s;
+    animation-fill-mode: forwards;
+    border-bottom: 1px solid black;
+}
+@keyframes menuLine3{
+    from{
+        width:0vw;
+       
+        
+    }to{
+        width:2.35vw;
+    }
+       
+}
+#banner_content{
+    position: relative;
+    width:100vw;
+    height: 60vh;
+    display: inline-flex;
+    flex-direction: row;
+}
+#banner_content>div:nth-child(1){
+    width:25vw;
+    height: 60vh;
+    padding: 7vw 0 0 3vw;
+}
+#banner_content_main{
+    width:33vw;
+    height: 38vh;
+    margin: 8vw 0 4vw;
+}
+#banner_content_main>ul>li{
+    padding:0 0 2vw 0;
+
+}
+#banner_content_main>ul>li>p{
+    padding-bottom: 1.5vw;
+}
+#banner_content_main>ul>li>h2{
+    font-size: 1.5vw;
+    font-weight: 500;
+    color: #333;
+}
+#banner_content_main>ul>li:nth-child(2)>p{
+    height: 10vh;
+    font-size: 0.8vw;
+}
+#banner_content_main>ul>li>a{
+    border: 1px solid #333;
+    padding:1vw 5vw 1vw 1.5vw;
+    font-weight: 500;
+    color: #333;
+}
+#banner_content_main>ul>li>a:hover{
+    background-color: #333;
+    color: whitesmoke;
+}
+#banner_content_main>ul>li>a>span{
+    margin-top: -1vw;
+}
+#first{
+    box-sizing: border-box;
+    width: 100vw;
+    height: 70vh;
+}
+.picture{
+    margin-left:5vw;
+}
+.picture_wrap{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+.picture_wrap>li, .picture_wrap>li>img{
+    box-sizing: border-box;
+    width: 22vw;
+    height:50vh;
+    padding: 2vw 3vw 3vw;
+}
+.picture_wrap>li:nth-child(1)>img{
+    padding-top: 5vw;
+}
+.picture_wrap>li:nth-child(5)>img{
+    width:23vw;
+    height: 60vh;
+    padding-top: 15vh;
+}
+.information{
+    box-sizing: border-box;
+    width:100vw;
+    height: 20vh;
+}
+.information_wrap{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-left: 10vw;
+    overflow: hidden;
+}
+.information_wrap>li{
+    width:33vw;
+    margin-right: 5vw;
+}
+.information_wrap>li>p{
+    width: 17vw;
+    height: 3vh;
+}
+.information_wrap>li>:nth-child(1){
+    font-weight: 800;
+    color: #333;
+}
+#second, #fourth{
+    width: 100vw;
+    height: 75vh;
+    padding-top: 3vh;
+    display: flex;
+    flex-direction: row;
+}
+.left{
+    margin-left:5vw;
+}
+.right img{
+    box-sizing: border-box;
+    width:56vw;
+    height: 70vh;
+    padding-left: 2vw;
+    right:0vw;
+}
+.picture_wrap_for4{
+    box-sizing: border-box;
+    width:56vw;
+    height: 70vh;
+    right:0vw;
+    overflow: hidden;
+
+}
+#fifth{
+    width:100vw;
+    height: 50vh;
+    display: flex;
+    text-align: center;
+}
+#quote{
+    margin: 10vw auto;
+}
+
+
+

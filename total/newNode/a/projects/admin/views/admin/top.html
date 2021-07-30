@@ -1,0 +1,200 @@
+{% extends './community.html'%}
+
+
+
+
+
+{% block content %}
+<div id="total_container">    
+    <div id="top_m">[]
+        <div id="top_contents_container">
+            <div id="logo">
+                <p>경일직업능력개발원</p>
+            </div>
+            <ul>
+                <li><a href="/admin/mainBoard_category?idx=administrator">administrator</a></li>
+                <li><a href="/admin/mainBoard_category?idx=시설소개">시설소개</a></li>
+                <li><a href="/admin/mainBoard_category?idx=교육과정">교육과정</a></li>
+                <li><a href="/admin/mainBoard_category?idx=취업정보">취업정보</a></li>
+                <li><a href="/admin/mainBoard_category?idx=커뮤니티">커뮤니티</a></li>
+                <li><a href="/admin/mainBoard_category?idx=상담신청">상담신청</a></li>
+                <li><a href="/admin/mainBoard_category?idx=방문자정보">방문자정보</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="left_contents_container_m">
+        <ul>
+            <li class="manager_mode_m">
+                <p><a href="">관리자모드</a></p>
+                <ul>
+                    <li><span>{{resu.level}}  :  </span><span><a href="">   로그인</a></span></li>
+                    <li><span id="manager_name_m"></span></li>
+                    <li><span>현재 시간</span></li>
+                </ul>
+            </li>
+        </ul>
+        <ul id="community_left_m">
+            <li><p>좌측메뉴</p></li>
+            {% set res = subboard %}
+            {% for item in res %}
+                <li><a href="/admin/sub_board_search?idx={{res[loop.index-1].mainBoard}}&id={{res[loop.index-1].subBoard}}">{{res[loop.index-1].subBoard}}{{[loop.index]}}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+top의 내용입니다.
+{% endblock %}
+
+
+
+
+{% block tableContents %}
+
+<a href="/admin/community_write?idx={{originalValue.mainBoard}}&id={{originalValue.subBoard}}">글쓰기</a>
+<form action="/admin/community" method="POST">
+    <div id='community_table_content'>
+            <input type="submit" name="delete" value="삭제">
+            <table border="1">
+                <th>선택</th>
+                <th>번호</th>
+                <th>제목</th>
+                <th>보임/숨김</th>
+                <th>작성자</th>
+                <th>날짜</th>
+                <th>조회수</th>
+                <th>첨부파일</th>
+                <th>읽기권한</th>
+                {% set res = noticeres %}
+                <!-- noticeres -> communitycontroller에 내용있음 community테이블에서 가져온 것 -->
+                {% for item in res %}
+                <tr>
+                    <td>
+                        <input type="checkbox" value="{{res[loop.index-1].id}}" name="num">
+                    </td>
+                    <td>
+                        <span>{{[loop.index]}}</span>
+                    </td>
+                    <td>
+                        <a href="/admin/subboard_searchd?idx={{res[loop.index-1].mainBoard}}&id={{res[loop.index-1].subBoard}}&idxx={{res[loop.index-1].id}}">{{res[loop.index-1].title}}</a>
+                    </td>
+                    <td>
+                        <span>{{res[loop.index-1].writeaut}}</span>
+                    </td>
+                    <td>
+                        <span>{{res[loop.index-1].writer}}</span>
+                    </td>
+                    <td>
+                        <span>{{res[loop.index-1].enrollmentDate}}</span>
+                    </td>
+                    <td>
+                        <span>{{res[loop.index-1].count}}</span>
+                    </td>
+                    <td>
+                        <span>{{res[loop.index-1].file}}</span>
+                    </td>
+                    <td>
+                        <span>{{res[loop.index-1].writeaut}}</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+    </div>
+</form>
+{% endblock %}
+
+{% block tableContents2 %}
+여기는 갤러리 형식
+{% endblock%}
+
+
+{% block talbeContents3 %}
+여기는 기타
+{% endblock %}
+
+
+{% block popupform %}
+<div id="popup_titie">
+    <p>팝업관리 입력/수정</p>
+</div>
+<div id="popup_content_form">
+    <table>
+        <p>내용을 입력해주세요</p>
+        <th>
+            <p>보임설정</p>
+        </th>
+        <th>
+            <p>팝업창크기</p>
+        </th>
+        <td>
+            <p>팝업창위치</p>
+        </td>
+        <td>
+            <p>팝업형태</p>
+        </td>
+        <td>
+            <p>타이틀</p>
+        </td>
+        <td>
+            <p>이미지 파일</p>
+        </td>
+        <td>
+            <p>바로가기 링크</p>
+        </td>
+        <td>
+            <p>보지않음 설정</p>
+        </td>
+        <td>
+            <p>내용</p>
+        </td>
+        <form action="" mehtod="POST"></form>
+        <tr>
+            <td>
+                <input type="radio" name="watchaut" value="0">
+                <label for="watchaut">숨김</label>
+                <input type="radio" name="watchaut" value="1" checked>
+                <label for="watchaut">보임</label>
+            </td>
+            <td>
+                <input type="number" name="row">
+                <label for="row">가로</label>
+                <input type="number" name="column">
+                <label for="row">세로</label>
+            </td>
+            <td>
+                <input type="number" name="left">
+                <label for="left">왼쪽에서</label>
+                <input type="number" name=" right">
+                <label for="right">오른쪽에서</label>
+            </td>
+            <td>
+                <input type="radio" name="popuptype" value="popup" checked>
+                <label for="popuptype">팝업</label>
+                <input type="radio" name="popuptype" value="layer" checked>
+                <label for="popuptype">레이어</label>
+            </td>
+            <td>
+                <input type="text" name="popup_title">
+            </td>
+            <td>
+                <input type="image">
+            </td>
+            <td>
+                <a href="">바로가기 링크</a>
+            </td>
+            <td>
+                <input type="text" name="popup_content">
+            </td>
+            <td>
+                <input type="radio" name="w_duration" value="0">
+                <label for=""></label>
+                <input type="radio" name="watchaut" value="1">
+                <label for="watchaut">보임</label>
+            </td>
+        </tr>
+        
+    </table>
+</div>
+
+{% endblock %}
+

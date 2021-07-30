@@ -1,0 +1,95 @@
+hello {{title}}<!--GET 요청하기-->
+
+<h1>GET요청</h1>
+<form action="/login" method = "get">
+    <input type="text" name = "userid">
+    <input type="password" name = "userpw">
+    <input type="submit" value = "GET">
+</form>
+<!--body에는 아무 내용이 없는 요청임-->
+
+
+<!--post 요청하기-->
+
+<h1>POST요청</h1>
+<form action="/login" method="post">
+<input type="text" name = "userid">
+<input type="password" name = "userpw">
+    <input type="submit" value = "POST">
+</form>
+
+<!--비동기 활용하기-->
+
+<h1>비동기 활용하기 GET</h1>
+<button id = "btn">통신하기</button>
+<div id="lodding" style="display:none">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADjCAMAAADdXVr2AAAAgVBMVEX39/cAAADw8PDr6+vT09O8vLykpKSNjY11dXVeXl4vLy8XFxdGRkb6+vr////09PSFhYXFxcXZ2dlBQUFvb2+Xl5eenp7Y2Njk5ORpaWnf39++vr5RUVGwsLAQEBBYWFg3Nzd+fn7Ly8soKCisrKwgICAbGxtMTEx5eXk7OztiYmL9pD21AAANYUlEQVR4nO2dbX+qPAyHBRScW4ooIqKiMj1u+/4f8C4+ILRpbdUWb3/+3x6P62WSJk1L6XTeeuutt9566623tAWkFEDb4zAiQqJgNf76m0zJ6wFCJ3HOGvRI28N5sEj27dS0cF/KgCRyGKUvxAddls5xXsh+Lk/n7F8m/kiM4DnbFzEfZBid47wIHvnB8ZYvwpfjeB8vEX0wxekcJ2x7aFcFANeKSFiK8LIn907S6W4nEz/yZFUkJCK8Qo4XHvTgIauLeMHnaaCrSAwIExFeJMEL3bNaAiTUKvnnUbnzlYkmilvwLnBtAZKZ81lT7iwFfDfgNena4CN/DToqJ8H59PFcTrb5qGd+snLwZZw2Hms7+3yQ8nSUD13l6OJhdK5rGKgpskHxVpj5dPFQOrvmCzE6yjdHBqyJhxvPqvkgwvHy7/vxBHQ28cgEx0NnTz08EZ1N76TrUxzv0/G4D2vhiVzTLh6X9Cq8Pmc+LTwhnVW8mQjv05myY9bBExvPKh6aF46zC9ci0sET09nEg60Qj9YuzKA18CTGs4o3EuPlO/bDyngyOqtlCxnkQj4naLqnOp6MzmrVAr7YfDQ5NIatjCc1nuWaeicx36xhPmU8GZ3dkrrsD0nM12iiqOI9TeSVIl9i8+XruvlU8Z7HNTuHTR+J+eqNCUW8pzIeNV9fkhzy2s+thvdE88pRnsx8w4v51PBkdC0YT7IqOvBd+hJKeE9nvCvJ4bI/otSlfjrj0XHPZearTCPeYxhVeE82rx" alt="" >
+</div>
+<div id="getroot"></div>
+<script type = "text/javascript">
+const btn = document.querySelector('#btn');
+btn.addEventListener('click',btnFn);
+function btnFn(){
+    console.log('req click');
+    document.querySelector('#lodding').style.display="block"
+    let options = {
+        method :'GET'
+    }
+    // 아래의 login을 log 등으로 바꾸어서 해보기
+    fetch(`http://localhost:3000/login?userid=asdf&userpw=asdf`,options)
+    // fetch 참고 사이트 https://www.daleseo.com/js-window-fetch/
+    // url을 통해 값을 보내는 것
+    // http://localhost:3000/login의 경로로 ? 뒤의 내용 즉 userid=asdf&userpw=asdf를 보내는 것
+    //fetch : 서버로 요청을 보내고 응답을 받을 수 있도록 하는 메서드
+    //      -> promise 기반으로 되어있다.
+    //fetch API -> 원하는 정보만 업데이트 가능하게 만들어줌
+    //fetch(url,[options])
+    // option으로는 method / headers / body / response / status 등을 읽어 올 수 있다.
+    .then(data =>{
+        if(data.status==404){
+            const root = document.querySelector('#getroot');
+            root.innerHTML = `error ${data.status} 페이지가 존재하지 않음`
+        }
+        return data.text();
+    })
+    .then(text=>{
+        document.querySelector('#lodding').style.display="none";
+        const root = document.querySelector('#getroot');
+        //root.innerHTML += text+'<p>비동기 get<p><br />';
+})
+}
+</script>
+
+<h1>비동기 활용하기 POST</h1>
+<button id="btn2">통신하기</button>
+<div id="postroot"></div>
+<script type = "text/javascript">
+    const btn2 = document.querySelector('#btn2');
+    btn2.addEventListener('click',btnFn2);
+    function btnFn2(){
+        console.log('req click');
+        let options = {
+            method:'POST',
+            headers:{
+                //'content-type':'application/x-www-form-urlencoded',
+                'content-type':'application/json'
+            },
+            //body:'userid=asdfasdf&userpw=asdfasdf',
+            //body:JSON.stringify({userid:'asdfasdf',userpw:'asdfasdf'})
+            // 서버쪽에서도 읽을 수 있게 하기위해 위와 같은 구문형식으로
+            body:`{"userid":"asdfasdf","userpw":"asdfasdf"}`
+            // 위와 같은 내용을 출력 body의 내용은 글자로만 가능
+            // 즉 모든 데이터는 글자로 바꾸어 전달해야 한다.
+            //  글자-> 오브젝트   오브젝트->글자
+            // api / jwt  / web socket 등 등 
+            }
+            fetch('http://localhost:3000/login',options)
+            .then(data =>{
+                return data.text();
+            })
+            .then(text =>{
+                const root = document.querySelector('#postroot');
+                root.innerHTML += text+'<br />';
+            })
+    }
+</script>

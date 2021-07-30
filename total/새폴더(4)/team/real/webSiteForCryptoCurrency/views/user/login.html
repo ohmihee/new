@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href="../../css/user/user.css">
+</head>
+<body>
+    
+{% include header %} 
+
+<div class="login_wrapper">
+    <div class="login_box">
+        <h1 class="box_title">로그인</h1>
+        <p class="box_subtitle">소중한 정보를 위해 주소창을 체크해주세요.</p>
+        <div class="chk_add">
+        
+        <form action = "/user/login_success" method="post">
+        <input type="text" id = "login_email" name= "email" placeholder="E-Mail"></br>
+        <input type="text" id = "login_password" name = "password" placeholder="Password"></br>
+        <button class="loginbtn submit_login">로그인</button>
+        </form>
+            <a class = "login_basic mt20">비밀번호 찾기</a>
+            <a class = "red mt20 ftbold">회원가입</a>
+        
+    </div>
+
+
+</div>
+{% include footer %} 
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/search.css">
+    <script type="text/javascript" src="/js/index.js"></script>
+</head>
+<body>
+    <div id="top_m">
+        <div id="top_contents_container">
+            <div id="logo">
+                <p>경일직업능력개발원</p>
+            </div>
+            <ul>
+                <li><a href="/admin/mainBoard_category?idx=administrator">administrator</a></li>
+                <li><a href="/admin/mainBoard_category?idx=시설소개">시설소개</a></li>
+                <li><a href="/admin/mainBoard_category?idx=교육과정">교육과정</a></li>
+                <li><a href="/admin/mainBoard_category?idx=취업정보">취업정보</a></li>
+                <li><a href="/admin/mainBoard_category?idx=커뮤니티">커뮤니티</a></li>
+                <li><a href="/admin/mainBoard_category?idx=상담신청">상담신청</a></li>
+                <li><a href="/admin/mainBoard_category?idx=방문자신청">방문자정보</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="contents_m">
+        <div id="left_contents_container_m">
+            <ul>
+                <li class="manager_mode_m">
+                    <p><a href="">관리자모드</a></p>
+                    <ul>
+                        <li><span>{{resu.idx}}  :  </span><span><a href="">로그인</a></span></li>
+                        <li><span id="manager_name_m"></span></li>
+                        <li><span>현재 시간</span></li>
+                    </ul>
+                </li>
+                <li class="left_menu_m">
+                    <table class="left_menu_table_m">
+                        <thead>
+                            <tr>
+                                <th>좌측메뉴</th>
+                            </tr>
+                        </thead>                    
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul id="list_column_m">
+                                        <li><a href="/admin/admin_list">관리자리스트</a></li>
+                                        <li><a href="/admin/site_set">사이트환경설정</a></li>
+                                        <li><a href="/admin/board_make">게시판생성관리</a></li>
+                                        <li><a href="">게시판그룹관리</a></li>
+                                        <li><a href="/admin/popup_manage">팝업관리</a></li>
+                                        <li><a href="">메인비쥬얼[보임]</a></li>
+                                        <li><a href="">메인비쥬얼[숨김]</a></li>
+                                        <li><a href="/admin/user_list">사용자 관리</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+        <div id="main_container_m">
+            <div id="main_container_top_m">
+                <p>관리자리스트</p>
+                <form action="/admin/admin_search" method="POST">
+                    <fieldset>
+                        검색조건 : 
+                                  <select name="search_condition_m">
+                                      <option value="name">이름</option>
+                                      <option value="class_name">직무</option>
+                                  </select>
+                                  <input type="text" name="value" >
+                        <input type="submit" value="검색" name="search">
+                        <input type="reset"  value="초기화" name="reset">
+                    </fieldset>
+                </form>
+            </div>
+            <div id="main_container_main_m">
+                <form action="/admin/admin_add" method="post"  id="admin_add_form">
+                    <div>
+                        <label for="name" id="admin_label">이름</label>
+                        <input type="text" placeholder="이름" name="name" required>
+                    </div>
+                    <div>
+                        <label for="idx" id="admin_label">아이디</label>
+                        <input type="text" placeholder="아이디" name="idx" required>
+                    </div>
+                    <div>
+                        <label for="psw" id="admin_label">비밀번호</label>
+                        <input type="password" placeholder="비밀번호" name="psw" required>
+                    </div>
+                    <div>
+                        <label for="birth" id="admin_label">생년월인</label>
+                        <input type="date" placeholder="생년월일" name="birth" required>
+                    </div>
+                    <div>
+                        <label for="courseName" id="admin_label">직무</label>
+                        <input type="text" placeholder="직무" name="courseName" required>
+                    </div>
+                    <div>
+                        <label for="level" id="admin_label">관리자등급</label>
+                        <input type="text" placeholder="등급" name="level" required>
+                    </div>
+                    <div>
+                        <label for="Tel" id="admin_label">연락처</label>
+                        <input type="tel" placeholder="연락처" name="tel" required>
+                    </div>
+                    <div>
+                        <label for="startDate" id="admin_label">입사일</label>
+                        <input type="date" placeholder="입사일" name="startDate" required>
+                    </div>
+                    <div>
+                        <label for="Email" id="admin_label">이메알</label>
+                        <input type="email" placeholder="이메일" name="email" required>
+                    </div>
+                    <div>
+                        <label for="img" id="admin_label">사진</label>
+                        <input type="file" placeholder="image" name="img">
+                    </div>
+                    <div>
+                        <input type="submit" value="관리자 추가">
+                    </div>
+                </form>
+                <form action="/admin/searched_data" id="searched_form" method="POST">
+                        <div>
+                            <label for="number" id="admin_label">번호</label>
+                            <input type="number" value="{{resu.id}}" name="Id" id="admin_input" required>
+                        </div>
+                        <div>    
+                            <label for="name" id="admin_label">이름</label>
+                            <input type="text" value="{{resu.name}}" name="Name" id="admin_input" required>
+                        </div>
+                        <div>   
+                            <label for="level" id="admin_label">등급</label>
+                            <input type="text" value="{{resu.level}}" name="Level" id="admin_input" required>
+                        </div>
+                        <div>
+                            <label for="idx" id="admin_label">아이디</label>
+                            <input type="text" value="{{resu.idx}}" name="Idx" id="admin_input" required>
+                        </div>
+                        <div>    
+                            <label for="img" id="admin_label">연락처</label>
+                            <input type="tel" value="{{resu.tel}}" name="Tel" id="admin_input" required>
+                        </div>
+                        <div>    
+                            <label for="email" id="admin_label">이메일</label>
+                            <input type="email" value="{{resu.email}}" name="Email" id="admin_input" required>
+                        </div>
+                        <div>    
+                            <label for="startDate" id="admin_label">가입일</label>
+                            <input type="date" value="{{resu.birth}}" name="StartDate" id="admin_input" required>
+                        </div>
+                        <div class="submit">
+                            <input type="submit" value="삭제" name="delete" id="submit">
+                            <input type="submit" value="수정" name="modify" id="submit">
+                        </div>
+                </form>
+            </div>
+            <div id="main_container_sub_m">
+                <table border="1">
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>관리자등급</th>
+                    <th>아이디</th>
+                    <th>연락처</th>
+                    <th>이메일</th>
+                    <th>가입일</th>
+                    {% set res = adminList %}
+                    {% for item in res %}
+                    <tr>
+                        <td>{{res[loop.index-1].id}}</td>
+                        <td>{{res[loop.index-1].name}}</td>
+                        <td>{{res[loop.index-1].level}}</td>
+                        <td>{{res[loop.index-1].idx}}</td>
+                        <td>{{res[loop.index-1].tel}}</td>
+                        <td>{{res[loop.index-1].email}}</td>
+                        <td>{{res[loop.index-1].startDate}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

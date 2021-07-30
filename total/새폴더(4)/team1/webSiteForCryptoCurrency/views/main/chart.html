@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://code.highcharts.com/stock/highstock.js"></script>
+		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+	</head>
+	<body>
+		<div id="container" style="height: 500px; min-width: 400px"></div>
+		<script>
+
+			function draw3(coin){
+				var chartdata = [];
+				$.getJSON(`https://poloniex.com/public?command=returnChartData&currencyPair=${coin}&start=1455699200&end=9999999999&period=14400`, function (data) {
+					$.each(data, function(i, item){
+						chartdata.push([item.date*1000, item.open, item.high, item.low, item.close]);
+					});
+				}).done(function(){
+					Highcharts.stockChart('container',{
+						title: {
+							text: `${coin}`
+						},
+						rangeSelector: {
+							buttons: [
+								{type: 'hour',count: 1,text: '1h'}, 
+								{type: 'day',count: 1,text: '1d'}, 
+								{type: 'all',count: 1,text: 'All'}
+							],
+							selected: 2,
+							inputEnabled: true
+						},
+						plotOptions: {
+							candlestick: {
+								downColor: 'blue',
+								upColor: 'red'
+							}
+						},
+						series: [{
+							name: `${coin}`,
+							type: 'candlestick',
+							data: chartdata,
+							tooltip: {
+								valueDecimals: 8
+							}
+						}]
+					});
+				});
+			}
+			draw3('USDT_BTC');
+		</script>
+	</body>
+</html>

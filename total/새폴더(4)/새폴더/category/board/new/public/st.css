@@ -1,0 +1,108 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    box-sizing: border-box;
+}
+ul,li{
+    list-style:none;
+}
+a{
+    text-decoration: none;
+}
+#banner{
+    width:100vw;
+    height: 20vh;
+    background: rgb(0, 51, 153);
+    display: flex;
+    text-align: center;
+}
+#banner>p{
+    width:100vw;
+    margin:1.5vw auto;
+    color:white;
+    font-size: 5vw;
+    text-align: center;
+}
+.go_board{
+    width:100vw;
+    height: 40vh;
+    text-align: center;
+    margin-top: 5vw;
+    color:rgb(0, 51, 153);
+    font-size: 2vw;
+}
+.go_board>a{
+    border:1px solid black;
+    font-weight: 600;
+    padding:1vw;
+}
+.go_main, .bottom{
+    width:50vw;
+    height: 2.5vw;
+    margin: 1vw auto;
+    text-align: center;
+    background-color:rgb(179, 217, 255);
+    font-size: 1.5vw;
+    font-weight: 600;
+    padding-top: 0.5vw;
+}
+.list{
+    width:50vw;
+    height: 50vh;
+    margin: 0 auto;
+    text-align: center;
+}
+.list table{
+    margin:2vw auto;
+}   
+.board>p{
+    font-weight: 600;
+}
+.list table>tr>td{
+    height: 1vw;
+    padding-right: 2vw;
+}
+.delete_login{
+    width:100vw;
+    height: 10vh;
+    font-size: 1.2vw;
+    text-align: center;
+    padding-top: 1vw;
+}
+.submit{
+    margin:0.7vw;
+    font-size: 0.8vw;
+}
+.write_board, .write_complete{
+    width:100vw;
+    height: 25vh;
+    text-align: center;
+}
+#inner{
+    width:100vw;
+    height: 50vh;
+    margin: 2vw 35vw 0vw;
+    
+}
+#inner>li:nth-child(1), #inner>li:nth-child(2){
+    width: 20vw;
+    height: 8vh;
+    float: left;
+}
+#inner>li:nth-child(3){
+    width: 30vw;
+    height: 15vh;
+}
+#inner>li:nth-child(3) textarea{
+    width: 32.5vw;
+    height: 25vh;
+    margin-top: 1vw;
+}
+.m_complete{
+    width: 32.5vw;
+    height: 5vh;
+    margin-top:13vw;
+
+}

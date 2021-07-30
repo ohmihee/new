@@ -1,0 +1,308 @@
+const express = require('express');
+const nunjucks = require('nunjucks');
+const app = express();
+
+app.use(express.static('public'));
+
+app.set('view engine','html');
+nunjucks.configure('views',{
+	express:app,
+})
+
+app.get('/',(req,res)=>{
+	res.render('index.html',{
+		name:'algml',
+	})
+})
+
+app.listen(3000,()=>{
+	console.log('server start 3000');
+});
+
+
+
+
+수정페이지에서 목록가기 버튼
+글쓰기 페이지에서 목록가기 버튼
+
+
+
+
+Enter password: *********
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 132
+Server version: 10.5.9-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use homepage
+Database changed
+MariaDB [homepage]> create table board(
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 2
+MariaDB [homepage]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| algml              |
+| homepage           |
+| information_schema |
+| member             |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [homepage]> show tables;
+Empty set (0.000 sec)
+
+MariaDB [homepage]> source C:/Users/KGA_19/Desktop/algml/createetable.sql;
+ERROR 1064 (42000) at line 2 in file: 'C:\Users\KGA_19\Desktop\algml\createetable.sql': You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-utf8mb4' at line 8
+MariaDB [homepage]> show tables;
+Empty set (0.000 sec)
+
+MariaDB [homepage]>
+MariaDB [homepage]> source C:/Users/KGA_19/Desktop/algml/createetable.sql;
+ERROR 1007 (HY000) at line 1 in file: 'C:\Users\KGA_19\Desktop\algml\createetable.sql': Can't create database 'homepage'; database exists
+Database changed
+Query OK, 0 rows affected (0.141 sec)
+
+MariaDB [homepage]> show tables;
++--------------------+
+| Tables_in_homepage |
++--------------------+
+| board              |
++--------------------+
+1 row in set (0.000 sec)
+
+MariaDB [homepage]>
+
+
+
+테이블 만들기 - 비쥬얼 스튜디오 코드에 입력
+CREATE DATABASE homepage;
+use homepage;
+
+CREATE TABLE board(
+    idx INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    subject VARCHAR(100) NOT NULL,
+    board_name VARCHAR(50) NOT NULL,
+    content TEXT,
+    today DATETIME DEFAULT CURRENT_TIMESTAMP,
+    hit int(11)
+)   AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+/*
+mariaDB -> 역슬래시 기능 존재
+    /사용할려면 //권장
+    or 
+    \대체해서 써라
+
+    C:\Users\KGA_19\Desktop\algml
+    orC:/Users/KGA_19/Desktop/algml
+*/
+
+
+
+MariaDB [(none)]> use homepage
+Database changed
+MariaDB [homepage]> select idx,subject,content,today,hit from board;
++-----+-----------------+-------------+---------------------+------+
+| idx | subject         | content     | today               | hit  |
++-----+-----------------+-------------+---------------------+------+
+|   1 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:44:22 |    0 |
+|   2 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:50 |    0 |
+|   3 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:51 |    0 |
+|   4 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:52 |    0 |
+|   5 | 공지            | 내용        | 2021-04-23 15:14:39 |    0 |
++-----+-----------------+-------------+---------------------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [homepage]> select idx,subject,content,today as date,hit from board;
++-----+-----------------+-------------+---------------------+------+
+| idx | subject         | content     | date                | hit  |
++-----+-----------------+-------------+---------------------+------+
+|   1 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:44:22 |    0 |
+|   2 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:50 |    0 |
+|   3 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:51 |    0 |
+|   4 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:52 |    0 |
+|   5 | 공지            | 내용        | 2021-04-23 15:14:39 |    0 |
++-----+-----------------+-------------+---------------------+------+
+5 rows in set (0.000 sec)
+
+
+
+MariaDB [homepage]> select idx,subject,content,today as date,hit from board;
++-----+-----------------+-------------+---------------------+------+
+| idx | subject         | content     | date                | hit  |
++-----+-----------------+-------------+---------------------+------+
+|   1 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:44:22 |    0 |
+|   2 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:50 |    0 |
+|   3 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:51 |    0 |
+|   4 | 공지사항입니다. | 내용입니다. | 2021-04-23 14:50:52 |    0 |
+|   5 | 공지            | 내용        | 2021-04-23 15:14:39 |    0 |
++-----+-----------------+-------------+---------------------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [homepage]> select idx,subject,content,date_format(today,'%Y-%m-%d'),hit from board;
++-----+-----------------+-------------+-------------------------------+------+
+| idx | subject         | content     | date_format(today,'%Y-%m-%d') | hit  |
++-----+-----------------+-------------+-------------------------------+------+
+|   1 | 공지사항입니다. | 내용입니다. | 2021-04-23                    |    0 |
+|   2 | 공지사항입니다. | 내용입니다. | 2021-04-23                    |    0 |
+|   3 | 공지사항입니다. | 내용입니다. | 2021-04-23                    |    0 |
+|   4 | 공지사항입니다. | 내용입니다. | 2021-04-23                    |    0 |
+|   5 | 공지            | 내용        | 2021-04-23                    |    0 |
++-----+-----------------+-------------+-------------------------------+------+
+5 rows in set (0.026 sec)
+
+MariaDB [homepage]> select idx,subject,content,date_format(today,'%Y-%m-%d' ) as today,hit from board;
++-----+-----------------+-------------+------------+------+
+| idx | subject         | content     | today      | hit  |
++-----+-----------------+-------------+------------+------+
+|   1 | 공지사항입니다. | 내용입니다. | 2021-04-23 |    0 |
+|   2 | 공지사항입니다. | 내용입니다. | 2021-04-23 |    0 |
+|   3 | 공지사항입니다. | 내용입니다. | 2021-04-23 |    0 |
+|   4 | 공지사항입니다. | 내용입니다. | 2021-04-23 |    0 |
+|   5 | 공지            | 내용        | 2021-04-23 |    0 |
++-----+-----------------+-------------+------------+------+
+
+
+MariaDB [homepage]> select idx where='2' from board;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '='2' from board' at line 1
+MariaDB [homepage]> select idx where=2 from board;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '=2 from board' at line 1
+MariaDB [homepage]> select 2 where idx from board;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from board' at line 1
+MariaDB [homepage]> select * from board where idx=2;
++-----+-----------------+------------+-------------+---------------------+------+
+| idx | subject         | board_name | content     | today               | hit  |
++-----+-----------------+------------+-------------+---------------------+------+
+|   2 | 공지사항입니다. | 관리자     | 내용입니다. | 2021-04-23 14:50:50 |    0 |
++-----+-----------------+------------+-------------+---------------------+------+
+1 row in set (0.024 sec)
+
+MariaDB [homepage]> select * from board order by idx desc;
++-----+-----------------+------------+-------------+---------------------+------+
+| idx | subject         | board_name | content     | today               | hit  |
++-----+-----------------+------------+-------------+---------------------+------+
+|  96 | asdfsdf         | adfasdfs   | asdfasdf    | 2021-04-23 17:17:39 | NULL |
+|  95 | asdfasdf        | asdf       | asdf        | 2021-04-23 17:17:18 | NULL |
+|  94 | fdsaf           | asdfa      | asdffas     | 2021-04-23 17:15:45 | NULL |
+|  93 | a               | sdfsdf     | d           | 2021-04-23 17:15:16 | NULL |
+|  92 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  91 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  90 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  89 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  88 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  87 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  86 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  85 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  84 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  83 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  82 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  81 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  80 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  79 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  78 | undefined       | undefined  | undefined   | 2021-04-23 17:10:10 | NULL |
+|  77 | undefined       | undefined  | undefined   | 2021-04-23 17:10:09 | NULL |
+|  76 | undefined       | undefined  | undefined   | 2021-04-23 17:10:09 | NULL |
+|  75 | undefined       | undefined  | undefined   | 2021-04-23 17:10:09 | NULL |
+|  74 | undefined       | undefined  | undefined   | 2021-04-23 17:10:09 | NULL |
+|  73 | undefined       | undefined  | undefined   | 2021-04-23 17:10:09 | NULL |
+|  72 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  71 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  70 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  69 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  68 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  67 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  66 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  65 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  64 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  63 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  62 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  61 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  60 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  59 | undefined       | undefined  | undefined   | 2021-04-23 17:10:04 | NULL |
+|  58 | undefined       | undefined  | undefined   | 2021-04-23 17:10:03 | NULL |
+|  57 | undefined       | undefined  | undefined   | 2021-04-23 17:10:03 | NULL |
+|  56 | undefined       | undefined  | undefined   | 2021-04-23 17:10:03 | NULL |
+|  55 | undefined       | undefined  | undefined   | 2021-04-23 17:10:03 | NULL |
+|  54 | undefined       | undefined  | undefined   | 2021-04-23 17:10:03 | NULL |
+|  53 | undefined       | undefined  | undefined   | 2021-04-23 17:10:03 | NULL |
+|  52 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  51 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  50 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  49 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  48 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  47 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  46 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  45 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  44 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  43 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  42 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  41 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  40 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  39 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  38 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  37 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  36 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  35 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  34 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  33 | undefined       | undefined  | undefined   | 2021-04-23 17:09:59 | NULL |
+|  32 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  31 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  30 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  29 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  28 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  27 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  26 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  25 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  24 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  23 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  22 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  21 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  20 | undefined       | undefined  | undefined   | 2021-04-23 17:09:58 | NULL |
+|  19 | undefined       | undefined  | undefined   | 2021-04-23 17:09:57 | NULL |
+|  18 | undefined       | undefined  | undefined   | 2021-04-23 17:09:57 | NULL |
+|  17 | undefined       | undefined  | undefined   | 2021-04-23 17:09:57 | NULL |
+|  16 | undefined       | undefined  | undefined   | 2021-04-23 17:09:57 | NULL |
+|  15 | undefined       | undefined  | undefined   | 2021-04-23 17:09:57 | NULL |
+|  14 | undefined       | undefined  | undefined   | 2021-04-23 17:09:57 | NULL |
+|  13 |                 |            |             | 2021-04-23 17:08:05 | NULL |
+|  12 | asfdsa          | fsadf      |             | 2021-04-23 17:04:55 | NULL |
+|  11 | s               | d          | f           | 2021-04-23 17:04:25 | NULL |
+|  10 | a               | a          | a           | 2021-04-23 17:04:21 | NULL |
+|   9 | a               | a          | a           | 2021-04-23 17:04:14 | NULL |
+|   8 | a               | a          | a           | 2021-04-23 17:01:45 | NULL |
+|   7 | a               | a          | a           | 2021-04-23 16:59:31 | NULL |
+|   6 | a               | a          |             | 2021-04-23 16:59:08 | NULL |
+|   5 | 공지            | 관리자     | 내용        | 2021-04-23 15:14:39 |    0 |
+|   4 | 공지사항입니다. | 관리자     | 내용입니다. | 2021-04-23 14:50:52 |    0 |
+|   3 | 공지사항입니다. | 관리자     | 내용입니다. | 2021-04-23 14:50:51 |    0 |
+|   2 | 공지사항입니다. | 관리자     | 내용입니다. | 2021-04-23 14:50:50 |    0 |
+|   1 | 공지사항입니다. | 관리자     | 내용입니다. | 2021-04-23 14:44:22 |    0 |
++-----+-----------------+------------+-------------+---------------------+------+
+96 rows in set (0.001 sec)
+
+MariaDB [homepage]> select * from board order by idx desc limit 0,1;
++-----+---------+------------+----------+---------------------+------+
+| idx | subject | board_name | content  | today               | hit  |
++-----+---------+------------+----------+---------------------+------+
+|  96 | asdfsdf | adfasdfs   | asdfasdf | 2021-04-23 17:17:39 | NULL |
++-----+---------+------------+----------+---------------------+------+
+1 row in set (0.016 sec)
+
+MariaDB [homepage]> select idx from board order by idx desc limit 0,1;
++-----+
+| idx |
++-----+
+|  96 |
++-----+
+1 row in set (0.000 sec)
+
+MariaDB [homepage]>
+

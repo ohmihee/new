@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/user/login.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="768593577687-f1a6it1fq9s9vkqe73ij8c3fkrdav338.apps.googleusercontent.com">
+    <script type="text/javascript">
+        function onSignIn(googleUser) {
+        let profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+    
+    </script>
+</head>
+<body>
+    {% include "header.html" %}
+    <div id ="login-container">
+       <div id="login-box">
+           <span id="right">
+                <ul>
+                    <li><img src="http://www.kiweb.or.kr/images/main_new/logo_bottom_2018.png"></li>
+                    <li>경일게임아카데미</li>
+                    <li>경일게임아카데미에 오신 것을 환영합니다. <br>경일게임아카데미가 여러분의 밝은 미래와 함께 하겠습니다.</li>
+                    <li>
+                        <form class="login-content" action="/user/login/success" method="POST">
+                            <div>
+                                <label for="uname">Username</label>
+                                <input type="text" placeholder="아이디를 입력하세요" name="email" required>
+                    
+                                <label for="psw">Password</label>
+                                <input type="password" placeholder="비밀번호를 입력하세요" name="psw" required>
+                            </div>
+                                <button type="submit">로그인</button>
+                        </form>
+                        <ul>
+                            <li><a href="/user/join">회원가입</a></li>
+                            <li><a href="/user/search_id">아이디찾기</a></li>
+                            <li><a href="/user/search_psw">비밀번호찾기</a></li>
+                        </ul>
+                    </li>
+                </ul>
+           </span>
+           <span id="left">
+               <ul>
+                   <li><p>sns계정으로 로그인 하기</p></li>
+                   <li>
+                       <ul>
+                           <li>구글 계정로그인</li>
+                                <a href="/user/login/google" id="naver" class="btn">google 로그인</a>
+                                <div class="g-signin2" data-onsuccess="onSignIn">구글 로그인</div>
+                           <li>
+                               카카오 계정 로그인
+                               <a href="/user/auth/kakao" id="kakao" class="btn">Kakao 로그인</a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li></li>
+               </ul>
+
+           </span>
+       </div>
+    </div>
+    {% include "footer.html" %}
+</body>
+</html>

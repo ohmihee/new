@@ -1,0 +1,11 @@
+{
+  "name": "make-tetris",
+  "version": "1.0.0",
+  "description": "how to make tetris",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "algml",
+  "license": "ISC"
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type='text/javascript'>
+
+    /*
+    // 카카오 요청 uri
+    "https://dapi.kakao.com/v2/local/search/address.json?analyze_type=similar&page=1&size=10&query=
+    -Headers -> "Authorization: KakaoAK {REST_API_KEY}"
+    // 카카오에서 요구하는 형식
+    -restaPikey -> 6a6edcb3952747d14b2f508442194cfd
+    */
+        document.addEventListener('DOMContentLoaded',init);
+        // 페이지의 로드가 끝났을 때 init함수를 실행하므로 코드 위치에 상관없이 init함수가 실행된다.
+        // 페이지의 로드가 끝난 시점에는 init함수를 읽은 상태이므로
+        /*async*/ function init(){
+            /*
+            let options = {
+                method:'GET',
+                headers:{
+                    "Authorization":"KakaoAK 6a6edcb3952747d14b2f508442194cfd"
+                    // 카카오에서 요구한 형식대로 작성해줌
+                }
+            }
+            //fetch 사용 -> promise 객체로 반환 
+            // promise객체이므로 async-await 또는 then-catch 사용
+            //axios와 fetch는 같은 역할을 한다.
+
+            let result = await fetch("https://dapi.kakao.com/v2/local/geo/coord2address.json?input_coord=WGS84&y=37.5397559555383&x=127.123313958545",options)
+            console.log(result);
+            let json = await result.json();
+            
+            console.log('json===================',json)
+            */
+           const searchBtn = document.querySelector('#addressSearch')
+           searchBtn.addEventListener('click',getAddress)
+
+        }
+
+        async function getAddress(){
+            const addressInput = document.querySelector('#addressInput')
+            const addressList = document.querySelector('#addressList')
+            //console.log(addressInput.value);
+            // input에 입력한 내용을 console로 직어두기
+            if(addressInput.value.length==0){
+                alert('주소를 입력해주세요')
+                addressInput.focus()
+                return false
+            }
+            let options = {
+                method:'GET',
+                headers:{
+                    "Authorization":"KakaoAK 6a6edcb3952747d14b2f508442194cfd"            
+                }
+            }           
+            let result = await fetch(`https://dapi.kakao.com/v2/local/search/address.json?analyze_type=similar&page=1&size=10&query=${addressInput.value}`,options)
+            //console.log(result);
+            let json = await result.json()
+            addressList.innerHTML=''
+            if(json.documents.length==0){
+                addressList.innerHTML='<li>결과값이 존재하지 않습니다.</li>'
+                return false
+            }
+            json.documents.forEach(v => {
+              // console.log(v)
+               const li = document.createElement('li')
+               li.innerHTML = v.address_name
+               li.dataset.x = v.x
+               li.dataset.y = v.y
+               // li.dataset.x에 v.x의 값을 넣겠다.
+               li.addEventListener('click',getAddressDetail)
+               addressList.appendChild(li)
+               // 해당 페이지를 확인해보면 해당 element에 v.x와 v.y가 속성값으로 들어간다.
+               //const att = li.getAttribute('data-x')
+               //console.log(att);
+           })
+        }
+        
+        async function getAddressDetail(){
+            //console.log(this)
+           let x = this.dataset.x
+           let y = this.dataset.y
+
+           let options = {
+               method:'GET',
+               headers:{
+                "Authorization":"KakaoAK 6a6edcb3952747d14b2f508442194cfd"
+               }
+           }
+           let url = `https://dapi.kakao.com/v2/local/geo/coord2address.json?input_coord=WGS84&x=${x}&y=${y}`
+           let result = await fetch(url,options)
+           let json = await result.json()
+
+           console.log(json)
+           let road_address = json.documents[0].road_address
+           /*
+           if(road_address==null){
+               let address_name = json.documents[0].address.address_name
+               document.querySelector('#address1').value = `${address_name}`
+           }
+           */
+          
+           if(road_address!==null){
+                let address_name = json.documents[0].road_address.address_name
+                let building_name = json.documents[0].road_address.building_name
+                let zone_no = json.documents[0].road_address.zone_no
+                document.querySelector('#addressNumber').value = zone_no
+                document.querySelector('#address1').value = `${address_name} ${building_name}`
+           }else{
+                let address_name = json.documents[0].address.address_name
+                let building_name = json.documents[0].address.building_name
+                let sub_address_no = json.documents[0].address.sub_address_no
+                document.querySelector('#addressNumber').value = sub_address_no
+                document.querySelector('#address1').value = `${address_name}`              
+           }
+          
+           /*
+           if(road_address!==null){
+            document.querySelector('#address1').value = `${address_name} ${building_name}`
+           }else{
+            document.querySelector('#address1').value = `${building_name}` 
+           }
+           */
+           
+        }
+
+
+        /*
+        //api 사용법
+        curl -X GET "https://dapi.kakao.com/v2/local/geo/coord2address.json?input_coord=WGS84&y=37.5397559555383&x=127.123313958545" \
+	    -H "Authorization: KakaoAK {REST_API_KEY}"
+        // 해당 api가 제공하는 형식대로 적용 위와 같이 요구되는 형식을 제공
+        */
+    </script>
+</head>
+<body>
+    <div>
+        <!--
+             변수 설정시 기법 
+        // tablename
+        ->tableName  카멜 표기법
+        ->table_name  스네이크 표기법
+        ->TableName  파스칼 표기법
+        한 프로젝트내에서 동일한 표기법을 사용하는 것이 좋다.
+        통일성있게
+        -->
+        <!--코드블럭도 통일성 있게 작성하는 것이 좋다.-->
+        <input type="text" id="addressInput" placeholder="주소를 입력해주세요">
+        <button id="addressSearch">주소검색하기</button>
+    </div>
+    <ul id="addressList">
+        <li></li>
+    </ul>
+    <input type="text" name="addressNumber" id="addressNumber" placeholder="우편번호">
+    <input type="text" name="address1" id="address1" size="40" placeholder="주소">
+    <input type="text" name="address2" id="address2" placeholder="상세주소">
+</body>
+</html>

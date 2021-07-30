@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/board/write" method="post">
+        <p>
+            제목
+            <input type="text" name="subject">
+        </p>
+        <ul>
+            <li>
+                <P>고객분류</P>
+                <input type="text" name="customer">
+            </li>
+            <li>
+                <p>상품분류</p>
+                <input type="text" name="product">
+            </li>
+            <li>
+                <p>유형분류</p>
+                <input type="text" name="kind">
+            </li>
+            <li>
+                <p>작성일</p>
+                <input type="text" name="date">
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p>사업분류</p>
+                <input type="text" name="business">
+            </li>
+            <li>
+                <p>상태</p>
+                <input type="text" name="status">
+            </li>
+            <li>
+                <p>물건지 정보</p>
+                <input type="text" name="site">
+            </li>
+            <li>
+                <p>공개여부</p>
+                <input type="text" name="open">
+            </li>
+            <li>
+                <p>내용</p>
+                <textarea name="content"></textarea>
+            </li>
+            <input type="text" name="number" value="number" display="none">
+        </ul>
+        <input type="submit" value="작성"> 
+    </form>
+</body>
+</html>

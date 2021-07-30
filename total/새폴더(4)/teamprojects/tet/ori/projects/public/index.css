@@ -1,0 +1,162 @@
+/*  색상 
+#4B7BEC 하늘색
+#F7B731 노랑색
+#20BF6B 연두색
+#EB3B5A 핑크색
+#E4EBFC 허연색
+ */
+ *{
+    margin: 0;
+    padding: 0;
+}
+ul,li{
+    list-style: none;
+}
+#wrap{
+    width: 100%;
+}
+#content{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient( to bottom, #fff, #9da3b1 );
+}
+.tt{
+    position: absolute;
+    top: 15%;
+    left: 1%;
+    color: #313131;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 5000;
+}
+.wt50{
+    width: 65%;
+    height: 562px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.85);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+    text-align: center;
+    line-height: 50px;
+    transition: all 0.7s ;
+}
+.Home{
+    background: #68afe9;
+    display: block;
+    box-shadow:-1px -5px 15px 1px rgba(63, 60, 60, 0.192)
+}
+.Home:hover{
+    cursor: pointer;
+    top: 19.5%;
+}
+.Weather{
+    background: #20BF6B;
+    display: block;
+    position: absolute;
+    top: 16%;
+    box-shadow:0px 7px 15px 1px rgba(63, 60, 60, 0.500)
+}
+.Weather:hover{
+    cursor: pointer;
+    top: 15.5%;
+}
+.join{
+    background:#EB3B5A;
+    display: block;
+    position: absolute;
+    top: 12%;
+    box-shadow:0px 7px 15px 1px rgba(63, 60, 60, 0.500)
+}
+
+.join:hover{
+    cursor: pointer;
+    top: 11.5%;   
+}
+.ToDo{
+    background: #F7B731;
+    display: block;
+    position: absolute;
+    top: 8%;
+    box-shadow:10px 20px 15px 1px rgba(63, 60, 60, 0.500)
+}
+.ToDo:hover{
+    cursor: pointer;
+    top: 7.5%;
+}
+#weather_view{
+    width: 1200px;
+    margin: 0 auto;
+}
+table{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.td0{
+    width: 200px;
+    height: 200px;
+    font-size: 40px;
+    border: 1px solid white;
+}
+.td1:hover{
+    background: #7631f7;
+}
+.td2:hover{
+    background:#f77031;
+}
+.td3:hover{
+    background: #F7B731;
+}
+
+.td4:hover{
+    background: #3155f7;
+}
+.td5:hover{
+    background: #b831f7;
+}
+.td6:hover{
+    background: #4B7BEC;
+}
+.td7:hover{
+    background: #f73194;
+}
+.td8:hover{
+    background: #31f7dd;
+}
+.td9:hover{
+    background: #f75931;
+}
+/* --------------------------------------------------------- */
+#userId{
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 30px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+#userId>span{
+    position: absolute;
+    display: block;
+    height: 5px;
+    width: 100%;
+    background: #c0c4cf;
+}
+#userId>span:nth-child(1){top: 0px;}
+#userId>span:nth-child(2){
+    top: 50%;
+    transform: translateY(-50%);
+}
+#userId>span:nth-child(3){bottom: 0px;}
+
+#userId:hover > .sp{
+    background: #ffffff;
+}
+#userId:hover{
+    cursor: pointer;
+}
+
+/* -------------- */

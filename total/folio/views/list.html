@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>번호</td>
+            <td>사업분류</td>
+            <td>제목</td>
+            <td>공개여부</td>
+            <td>상태</td>
+            <td>작성일</td>
+            <td>조회</td>
+        </tr>
+        {% for item in list %}
+        <tr>
+            <td>{{item.numbers}}</td>
+            <td>{{item.status}}</td>
+            <td><a href="/board/listDetail?numbers={{item.numbers}}">{{item.subject}}</a></td>
+            <td>{{item.open_status}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.numbers}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/board/write">등록</a>
+</body>
+</html>s

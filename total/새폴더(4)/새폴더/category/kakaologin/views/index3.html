@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script type = "text/javascript">
+    let result = fetch('https://api.bithumb.com/public/ticker/BTC_KRW',{
+        method:'get'
+    })
+    .then(res=>{
+        return res.json();
+    })
+    // .then으로 받기 위해서는 반드시 return으로 값을 보내주어야 한다.
+    .then(json=>{
+        console.log(json);
+    })
+    .then(json=>{
+        console.log(json)
+    })
+    .then(json=>{
+        console.log(json)
+    })
+
+
+    </script>
+</body>
+</html>

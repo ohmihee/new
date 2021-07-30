@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    -> passward 입력
+    -> show databases;
+            : 나온 결과는 엑셀 파일들
+    -> 특정 databases 사용하려면 : use databasename;
+    
+    -> insert into(user.id,name,passward)value
+    ->INSERT INTO [테이블명] (필드1, 필드2....) VALUES(값1,값2)
+    
+    -> INSERT INTO USER(userid,nama,password) VALUES(test,test,1234);
+       ~ VALUES 뒤의 값이 앞에 있는 userif,name,passward에 순서대로 들어가라
+    ->DELETE FROM user WHERE name="test";
+       ~ 레코드 지우는 법
+    
+    <data와 table만드는 법>
+    -> create database algml;
+    -> show databases;
+    -> use algml
+    
+    
+    
+    
+    
+    Enter password: *********
+    Welcome to the MariaDB monitor.  Commands end with ; or \g.
+    Your MariaDB connection id is 10
+    Server version: 10.5.9-MariaDB mariadb.org binary distribution
+    
+    Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+    
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    
+    MariaDB [(none)]> use algml
+    Database changed
+    MariaDB [algml]> show tables;
+    Empty set (0.000 sec)
+    
+    MariaDB [algml]> create table user(
+        -> userid varchar(50),
+        -> userpw varchar(50).
+        -> nsername varchar(50)
+        -> );
+    ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.
+    nsername varchar(50)
+    )' at line 3
+    MariaDB [algml]> show tables;
+    Empty set (0.001 sec)
+    
+    MariaDB [algml]> create table user(
+        -> userid varchar(50),
+        -> userpw varchar(50),
+        -> username varchar(50)
+        -> );
+    Query OK, 0 rows affected (0.300 sec)
+    
+    MariaDB [algml]> show tables;
+    +-----------------+
+    | Tables_in_algml |
+    +-----------------+
+    | user            |
+    +-----------------+
+    1 row in set (0.000 sec)
+    
+    MariaDB [algml]> desc user;
+    +----------+-------------+------+-----+---------+-------+
+    | Field    | Type        | Null | Key | Default | Extra |
+    +----------+-------------+------+-----+---------+-------+
+    | userid   | varchar(50) | YES  |     | NULL    |       |
+    | userpw   | varchar(50) | YES  |     | NULL    |       |
+    | username | varchar(50) | YES  |     | NULL    |       |
+    +----------+-------------+------+-----+---------+-------+
+    3 rows in set (0.047 sec)
+    
+    MariaDB [algml]> select * from user;
+    Empty set (0.057 sec)
+    
+    MariaDB [algml]> insert into user(userid,userpw,username) values('web7722','1234','오미희);
+        '> insert into user(userid,userpw,username) values('web7722','1234','오미희희;
+    ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'web7722','1234','오미희희' at line 1
+    MariaDB [algml]> insert into user(userid,userpw,username) values('web7722','1234','오미희');
+        '> desc user;
+        '> insert into user(userid,userpw,username) values('web7722','1234','오미희');
+        '> insert into user(userid,userpw,username) values('web7722','1234','오미희');
+        '>
+        '> show tables
+        '> use algml
+        '>
+     
+    
+    
+    Your MariaDB connection id is 11
+    Server version: 10.5.9-MariaDB mariadb.org binary distribution
+    
+    Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+    
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    
+    MariaDB [(none)]> show databases;
+    +--------------------+
+    | Database           |
+    +--------------------+
+    | algml              |
+    | information_schema |
+    | mysql              |
+    | performance_schema |
+    | test               |
+    +--------------------+
+    5 rows in set (0.001 sec)
+    
+    MariaDB [(none)]> use algml;
+    Database changed
+    MariaDB [algml]> show tables;
+    +-----------------+
+    | Tables_in_algml |
+    +-----------------+
+    | user            |
+    +-----------------+
+    1 row in set (0.000 sec)
+    
+    MariaDB [algml]> desc user;
+    +----------+-------------+------+-----+---------+-------+
+    | Field    | Type        | Null | Key | Default | Extra |
+    +----------+-------------+------+-----+---------+-------+
+    | userid   | varchar(50) | YES  |     | NULL    |       |
+    | userpw   | varchar(50) | YES  |     | NULL    |       |
+    | username | varchar(50) | YES  |     | NULL    |       |
+    +----------+-------------+------+-----+---------+-------+
+    3 rows in set (0.008 sec)
+    
+    MariaDB [algml]> insert user(userid,userpw,username) values('web7722','1234','오미희');
+    Query OK, 1 row affected (0.049 sec)
+    
+    MariaDB [algml]> insert user(userid,userpw,username) values('sample','1234','오미희');
+    Query OK, 1 row affected (0.024 sec)
+    
+    MariaDB [algml]> desc user;
+    +----------+-------------+------+-----+---------+-------+
+    | Field    | Type        | Null | Key | Default | Extra |
+    +----------+-------------+------+-----+---------+-------+
+    | userid   | varchar(50) | YES  |     | NULL    |       |
+    | userpw   | varchar(50) | YES  |     | NULL    |       |
+    | username | varchar(50) | YES  |     | NULL    |       |
+    +----------+-------------+------+-----+---------+-------+
+    3 rows in set (0.011 sec)
+    
+    MariaDB [algml]> insert user(userid,userpw,username) values('test','1234','오미이');
+    Query OK, 1 row affected (0.033 sec)
+    
+    MariaDB [algml]> insert user(userid,userpw,username) values('js','1234','오희미');
+    Query OK, 1 row affected (0.020 sec)
+    
+    MariaDB [algml]> insert user(userid,userpw,username) values('html','1234','미오희');
+    Query OK, 1 row affected (0.037 sec)
+    
+    MariaDB [algml]> select * from user
+        ->
+        ->
+    
+    
+    Enter password: *********
+    Welcome to the MariaDB monitor.  Commands end with ; or \g.
+    Your MariaDB connection id is 12
+    Server version: 10.5.9-MariaDB mariadb.org binary distribution
+    
+    Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+    
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    
+    MariaDB [(none)]> show databases;
+    +--------------------+
+    | Database           |
+    +--------------------+
+    | algml              |
+    | information_schema |
+    | mysql              |
+    | performance_schema |
+    | test               |
+    +--------------------+
+    5 rows in set (0.001 sec)
+    
+    MariaDB [(none)]> show tables;
+    ERROR 1046 (3D000): No database selected
+    MariaDB [(none)]> use algml;
+    Database changed
+    MariaDB [algml]> show tables;
+    +-----------------+
+    | Tables_in_algml |
+    +-----------------+
+    | user            |
+    +-----------------+
+    1 row in set (0.000 sec)
+    
+    MariaDB [algml]> select * from user;
+    +---------+--------+----------+
+    | userid  | userpw | username |
+    +---------+--------+----------+
+    | web7722 | 1234   | 오미희   |
+    | sample  | 1234   | 오미희   |
+    | test    | 1234   | 오미이   |
+    | js      | 1234   | 오희미   |
+    | html    | 1234   | 미오희   |
+    +---------+--------+----------+
+    5 rows in set (0.000 sec)
+    
+    MariaDB [algml]> delete from user where userid="js";
+    Query OK, 1 row affected (0.052 sec)
+    
+    MariaDB [algml]> select * from user;
+    +---------+--------+----------+
+    | userid  | userpw | username |
+    +---------+--------+----------+
+    | web7722 | 1234   | 오미희   |
+    | sample  | 1234   | 오미희   |
+    | test    | 1234   | 오미이   |
+    | html    | 1234   | 미오희   |
+    +---------+--------+----------+
+    4 rows in set (0.000 sec)
+    
+    MariaDB [algml]> insert user(userid,userpw,username) values('js','1234','오오오오');
+    Query OK, 1 row affected (0.032 sec)
+    
+    MariaDB [algml]> select * from user;
+    +---------+--------+----------+
+    | userid  | userpw | username |
+    +---------+--------+----------+
+    | web7722 | 1234   | 오미희   |
+    | sample  | 1234   | 오미희   |
+    | test    | 1234   | 오미이   |
+    | html    | 1234   | 미오희   |
+    | js      | 1234   | 오오오오 |
+    +---------+--------+----------+
+    5 rows in set (0.000 sec)
+    
+    MariaDB [algml]> insert into user(userid,userpw,username) valuse('js','1234','오오오오');
+    ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'valuse('js','1234','오오오오')' at line 1
+    MariaDB [algml]> insert into user(userid,userpw,username) values('js','1234','오오오오');
+    Query OK, 1 row affected (0.025 sec)
+    
+    MariaDB [algml]> select * from user order by userid asc
+        -> select * from user;
+    ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select * from user' at line 2
+    MariaDB [algml]> select * from user order by userid asc;
+    +---------+--------+----------+
+    | userid  | userpw | username |
+    +---------+--------+----------+
+    | html    | 1234   | 미오희   |
+    | js      | 1234   | 오오오오 |
+    | js      | 1234   | 오오오오 |
+    | sample  | 1234   | 오미희   |
+    | test    | 1234   | 오미이   |
+    | web7722 | 1234   | 오미희   |
+    +---------+--------+----------+
+    6 rows in set (0.023 sec)
+    
+    MariaDB [algml]> update user set username="홍길동" where username="오오오오";
+    Query OK, 2 rows affected (0.070 sec)
+    Rows matched: 2  Changed: 2  Warnings: 0
+    
+    MariaDB [algml]> select * from user order by userid asc
+        -> select * from user order by username asc;
+    ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select * from user order by username asc' at line 2
+    MariaDB [algml]> select from user order by userid asc;
+    ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from user order by userid asc' at line 1
+    MariaDB [algml]> select * from user order by userid asc;
+    +---------+--------+----------+
+    | userid  | userpw | username |
+    +---------+--------+----------+
+    | html    | 1234   | 미오희   |
+    | js      | 1234   | 홍길동   |
+    | js      | 1234   | 홍길동   |
+    | sample  | 1234   | 오미희   |
+    | test    | 1234   | 오미이   |
+    | web7722 | 1234   | 오미희   |
+    +---------+--------+----------+
+    6 rows in set (0.000 sec)
+    
+    
+    
+    
+    delete from [테이블명] where 필드=값;
+    desc [테이블명]
+    use[databasename]
+    
+    
+    
+    숙제 
+    pk값 primary key
+    alter table
+    select문option 값
+    검색기능의(%의 기능)활용 
+    limit
+    not null?
+    type이란?
+     - varchar
+     - init
+    auto increment
+    limit 기능
+    
+    
+
+    mysql에 들어가는 방법
+    :mysql -u root -p
+    -> password
+
+</body>
+</html>

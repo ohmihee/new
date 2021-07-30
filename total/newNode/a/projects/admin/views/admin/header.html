@@ -1,0 +1,29 @@
+{% extends './communityform.html' %}
+
+{% block content_table %}
+<table border="1">
+    <tr>        
+        <td>
+            <label for="title">제목</label>
+            <input type="text" value="{{title_content.title}}">
+        </td>
+        <td>
+            <label for="enrollmentDate">등록일</label>
+            <input type="Date" value="{{title_content.enrollmentDate}}">
+        </td>
+        <td>
+            <label for="writer">작성자</label>
+            <input type="text" value="{{title_content.writer}}">   
+        </td>
+        <td>
+            <label for="count">조회수</label>
+            <input type="text" value={{title_content.count}}>
+        </td>      
+    </tr>
+    <tr>
+        <td>
+            <input type="text" value="{{title_content.contents}}">
+        </td>
+    </tr>
+</table>
+{% endblock %}

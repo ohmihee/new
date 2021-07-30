@@ -1,0 +1,107 @@
+<header>
+    <div id="haeder_container">
+        <div id="header_box">
+            <ul>
+                <li class="header_title">
+                    <p>경일게임아카데미</p>
+                </li>
+                <li>
+                   <ul id="menu_container" onmouseover="menuBarOn()" onmouseout="menuBarOut()">
+                       <li>
+                            <a href="">학교소개</a>
+                       </li>
+                       <li>
+                            <a href="">교육과정</a>
+                       </li>
+                       <li>
+                            <a href="">취업정보</a>
+                       </li>
+                       <li>
+                            <a href="">커뮤니티</a>
+                       </li>
+                       <li>
+                            <a href="">상담신청</a>
+                       </li>
+                   </ul>
+                   <ul id="menu_content" class="out" onmouseover="menuBarOn()" onmouseout="menuBarOut()">
+                    <li>
+                        <ul>
+                            <li><a href="">인사말</a></li>
+                            <li><a href="">연혁</a></li>
+                            <li><a href="">교직원 소개</a></li>
+                            <li><a href="">시설소개</a></li>
+                            <li><a href="">오시는 길</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li><a href="">과정안내</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li><a href="">취업자인터뷰</a></li>
+                            <li><a href="">취업현황</a></li>
+                            <li><a href="">포트폴리오</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li><a href="">공지사항</a></li>
+                            <li><a href="">수강후기</a></li>
+                            <li><a href="">ki이야기</a></li>
+                            <li><a href="">ki기자단</a></li>
+                            <li><a href="">교수칼럼</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li><a href="">상담게시판</a></li>
+                            <li><a href="">지원하기</a></li>
+                            <li><a href="">자주묻는질문</a></li>
+                        </ul>
+                    </li>
+                </ul> 
+                   
+                </li>
+                <li class="user_bar">
+                    <ul>
+                        <li>
+                            <p><a href="/user/login">로그인</a></p>
+                        </li>
+                        <li>
+                            <p><a href="/user/join">회원가입</a></p>
+                        </li>
+                        <li>
+                            <p>KOR</p>
+                        </li>
+                        <li>
+                            <img src="https://www.sac.or.kr/design/theme/sac/images/search-btn.gif">
+                            <img src="https://www.sac.or.kr/design/theme/sac/images/schedule-btn.gif">
+                        </li>
+                    </ul>                    
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div><a href="/user/logout">로그아웃</a></div>
+</header>
+<script type="text/javascript">
+let menucontent = document.querySelector('#menu_content')
+function menuBarOn(){
+    if(menucontent.classList=="out"){
+        menucontent.classList.remove('out')
+        menucontent.classList.add('on')
+    }else{
+        menucontent.classList.add('on')
+    }
+    
+}
+function menuBarOut(){
+    menucontent.classList.remove('on')
+    menucontent.classList.add('out')
+}
+
+
+
+</script>

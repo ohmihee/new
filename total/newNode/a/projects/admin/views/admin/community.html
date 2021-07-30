@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel ="stylesheet" href="/css/admin/search.css">
+    <link rel="stylesheet" href="/css/admin/board.css">
+    
+
+
+</head>
+<body>
+<div id="total_container">
+    <div id="top_container_c">
+        
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+    <div id="contents_container_c">
+    {% if subboard[0].contentType == 1%}
+        {% block tableContents %}
+        {% endblock%}
+    {% elif subboard[0].contentType==0 %}
+        {% block tableContents2 %}
+        {% endblock%}
+    {% else %}
+        {% block tableContents3 %}
+        {% endblock%}
+    {% endif %}
+    </div>
+    <div id="">
+        {% block content_table %}
+        {% endblock %}
+    </div>
+    
+</div>
+</body>
+</html>

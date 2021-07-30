@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel ="stylesheet" href="/css/admin/search.css">
+    <link rel="stylesheet" href="/css/admin/board.css">
+</head>
+<body>
+ 
+
+<div id="total_container">    
+    <div id="top_m">
+        <div id="top_contents_container">
+            <div id="logo">
+                <p>경일직업능력개발원</p>
+            </div>
+            <ul>
+                <li><a href="/admin/mainBoard_category?idx=administrator">administrator</a></li>
+                <li><a href="/admin/mainBoard_category?idx=시설소개">시설소개</a></li>
+                <li><a href="/admin/mainBoard_category?idx=교육과정">교육과정</a></li>
+                <li><a href="/admin/mainBoard_category?idx=취업정보">취업정보</a></li>
+                <li><a href="/admin/mainBoard_category?idx=커뮤니티">커뮤니티</a></li>
+                <li><a href="/admin/mainBoard_category?idx=상담신청">상담신청</a></li>
+                <li><a href="/admin/mainBoard_category?idx=방문자정보">방문자정보</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="left_contents_container_m">
+        <ul>
+            <li class="manager_mode_m">
+                <p><a href="">관리자모드</a></p>
+                <ul>
+                    <li><span>{{resu.level}}  :  </span><span><a href="">   로그인</a></span></li>
+                    <li><span id="manager_name_m"></span></li>
+                    <li><span>현재 시간</span></li>
+                </ul>
+            </li>
+        </ul>
+        <ul id="community_left_m">
+            <li><p>좌측메뉴</p></li>
+            {% set res = subboard %}
+            {% for item in res %}
+                <li><a href="/admin/sub_board_search?idx={{res[loop.index-1].mainBoard}}&id={{res[loop.index-1].subBoard}}">{{res[loop.index-1].subBoard}}{{[loop.index]}}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+{% block content_table %}
+{% endblock %}
+    
+</body>
+</html>

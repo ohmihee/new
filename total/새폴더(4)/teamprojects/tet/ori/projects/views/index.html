@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+   
+    {% if type == 'close' %}
+    <script type="text/javascript">
+        window.close();
+    </script>
+    {% endif %}
+    <script type="text/javascript">
+  
+    function joinBtn(){
+        fetch('http://localhost:8001/user/join') // new Promise 
+        .then(data => {
+            return data.text(); // new Promise
+        })
+        .then(text => {
+            document.querySelector("#join_view").innerHTML = text;
+        })
+    }
+
+
+
+        function password_check(){
+        return pwd1.value != pwd2.value;
+    }
+        function password_check2(){
+            if(pwd1.value==''){
+                return true
+            }else{
+               return false
+            }
+        }
+
+    function btn20 (){
+        pwd1 = document.querySelector('#userpw');
+        pwd2 = document.querySelector('#userpw_check');
+        btn = document.querySelector('#login_submit');
+        login_frm = document.querySelector('#login_frm')
+
+        pwd_check = password_check();
+        pwd_check2 = password_check2();
+        if (pwd_check){
+            alert('비번이 일치하지 않습니다')
+            return
+        }
+        if (pwd_check2){
+            alert('비번 다시적어 못봤어!')
+            return
+        }
+        console.log('asdfasdf')
+        login_frm.submit();//조건이 맞을때만
+    }
+
+       
+     
+    async function userid_check(){
+        const userid_msg = document.querySelector('#userid_msg')
+        console.log(userid_msg)
+        const userid = document.querySelector('#userid')
+        console.log(userid)
+        console.log('aaa')
+        
+        let wow = await axios.get(`http://localhost:8001/user/userid_value?userid=${userid.value}`);
+        console.log(`http://localhost:3000/user/userid_value?userid=${userid.value}`)
+        console.log(wow)
+      
+        //ajax로 가져왔다 가정 중복 false 중복아니다 true
+        //서버에 보내서 데이터를 조회하고 결과가 조회되면 트루 안되면 펄스 중복이냐 아니냐
+        login_flag = wow.data.login;
+        // console.log(login_flag) //언디파인드
+        if(login_flag){
+            userid_msg.innerHTML = '올바른 아이디입니다.'
+            userid_msg.style.color = 'white';
+        }else{
+            userid_msg.innerHTML = '중복된 아이디입니다.'
+            userid_msg.style.color = 'black';
+        }
+    }
+
+    </script>
+
+</head>
+<body>
+    
+<div id="wrap">
+    <div class="tt">
+        {{userid}} <br/>
+        {{username}} <br/>
+        {% if isLogin %}
+        <a href='./user/logout'>갈겨?</a>
+        {% endif %}
+    </div>
+    <div id="content">
+
+        <div class="ToDo wt50" style="opacity: 1;">
+            <h2 class="tb">게시판</h2>
+            <div id="board_view" style="display:none;">
+         
+            </div>
+
+        </div>
+       
+        <div class="join wt50" style="opacity: 1;">
+            <h2 class="bt"> 회원가입/로그인</h2>
+            <div id="join_view" style="display:none;">
+         
+            </div>
+        </div>
+   
+        <div class="Weather wt50" style="opacity: 1;">
+            <h2 class="bt111">오늘 날씨</h2>
+            <div id="weather_view" style="display:none;">
+                <table>
+                    <tr>
+                        <td class="td1 td0"></td>
+                        <td class="td2 td0"></td>
+                        <td class="td3 td0"></td>
+                    </tr>
+                    <tr>
+                        <td class="td4 td0"></td>
+                        <td class="td5 td0"></td>
+                        <td class="td6 td0"></td>
+                    </tr>
+                    <tr>
+                        <td class="td7 td0"></td>
+                        <td class="td8 td0"></td>
+                        <td class="td9 td0"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="Home wt50">
+            <h2 class="top">테트리스 게임</h2>
+            <div id="Home_view" style="display:none;">
+                <iframe src="http://localhost:8001/html/index.html" height=700 width=750 style="border:none;"></iframe>
+            </div> 
+        </div>
+      
+        <label id="userId">
+            <span class="sp"></span>
+            <span class="sp"></span>
+            <span class="sp"></span>
+        </label>
+    </div>
+    
+</div>
+<script type="text/javascript">
+
+
+
+
+document.querySelector(".top").addEventListener('click', function () {
+    if(event.type == 'click' && document.querySelector(".Home").style.width !== "100%"){
+        document.querySelector(".Home").style.width ="100%"
+        document.querySelector(".Home").style.height ="100%";
+        document.querySelector(".Home").style.top ="0%";
+        document.querySelector("#Home_view").style.display = 'block';
+    }else{
+        document.querySelector(".Home").style.width ="65%"
+        document.querySelector(".Home").style.height ="562px";
+        document.querySelector(".Home").style.top ="20%";
+        document.querySelector("#Home_view").style.display = 'none';
+
+        document.querySelector(".Weather").style.width ="65%";
+        document.querySelector(".Weather").style.height ="562px";
+        document.querySelector(".Weather").style.top="16%";
+        document.querySelector(".Weather").style.opacity="1";
+        document.querySelector(".Home").style.opacity="1";
+
+
+        document.querySelector(".join").style.width ="65%";
+        document.querySelector(".join").style.height ="562px";
+        document.querySelector(".join").style.top ="12%";
+        document.querySelector(".join").style.opacity="1";
+        document.querySelector("#join_view").style.display='none';
+
+        document.querySelector(".ToDo").style.width ="65%" ;
+        document.querySelector(".ToDo").style.height ="562px";
+        document.querySelector(".ToDo").style.top ="8%"; 
+    }
+   
+});
+
+document.querySelector(".bt111").addEventListener('click', function () {
+    if(event.type == 'click' && document.querySelector(".Weather").style.width !== "100%"){
+        document.querySelector(".Weather").style.width ="100%";
+        document.querySelector(".Weather").style.height ="100%";
+        document.querySelector(".Weather").style.top ="0%";
+        document.querySelector("#weather_view").style.display = "block";
+        document.querySelector(".Home").style.top="100%";
+        document.querySelector(".Home").style.opacity="0";
+    }else{
+        document.querySelector(".Home").style.width ="65%"
+        document.querySelector(".Home").style.height ="562px";
+        document.querySelector(".Home").style.top ="20%";
+        document.querySelector("#Home_view").style.display = 'none';
+
+
+        document.querySelector(".Weather").style.width ="65%";
+        document.querySelector(".Weather").style.height ="562px";
+        document.querySelector(".Weather").style.top="16%";
+        document.querySelector(".Weather").style.opacity="1";
+        document.querySelector("#weather_view").style.display = "none";
+        document.querySelector(".Home").style.opacity="1";
+
+        document.querySelector(".join").style.width ="65%";
+        document.querySelector(".join").style.height ="562px";
+        document.querySelector(".join").style.top ="12%";
+        document.querySelector(".join").style.opacity="1";
+        document.querySelector("#join_view").style.display='none';
+
+        document.querySelector(".ToDo").style.width ="65%" ;
+        document.querySelector(".ToDo").style.height ="562px";
+        document.querySelector(".ToDo").style.top ="8%"; 
+    }
+ 
+
+    fetch('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=20313df3cc7ccf0b314fd37d36732f83&lang=kr&&units=metric')
+    .then(data=>{
+        return data.json();
+    })
+    .then(json => {
+        console.log(json);
+       let name = json.name;//도시
+       let temp = json.main.temp.toFixed(1);//현재
+       let temp_min= json.main.temp_min.toFixed(1);//최저
+       let temp_max= json.main.temp_max.toFixed(1);//최고
+       let humidity= json.main.humidity;//습도
+       let pressure=json.main.pressure;//기압
+       let deg = json.wind.deg;//풍향
+       let speed = json.wind.speed;//풍속
+       let description = json.weather[0].description;
+       let icon = json.weather[0].icon;
+       let img_url='<img src="http://openweathermap.org/img/wn/' + icon + ".png" + '"/>';
+      
+// * this.W_state.icon : get으로 가져온 데이터에서 아이콘 정보(weather.icon from response)를 가져와야한다
+        
+    //    json.main.temp.toFixed(1);
+        // txt += `${날씨.toFixed(1)}℃ <br />`
+        // const box = document.querySelector('#weather_view');
+        // box.innerHTML = txt;
+        console.log(json);
+        document.querySelector('.td1').innerHTML = `서울`;
+        document.querySelector('.td2').innerHTML = `${description}`;
+        document.querySelector('.td3').innerHTML = `${img_url}`;
+        document.querySelector('.td4').innerHTML = `현재 ${temp}℃`;
+        document.querySelector('.td5').innerHTML = `최저 ${temp_min}℃`;
+        document.querySelector('.td6').innerHTML = `최고 ${temp_max}℃`;
+        document.querySelector('.td7').innerHTML = `습도 ${humidity}`;
+        document.querySelector('.td8').innerHTML = `풍향 ${deg}`;
+        document.querySelector('.td9').innerHTML = `풍속 ${speed}`;
+        
+        // document.querySelector('#weather_view').innerHTML = `${temp} ${description} ${img_url}`;
+        
+    })
+    
+});
+
+document.querySelector(".bt").addEventListener('click', function () {
+    if(event.type == 'click' && document.querySelector(".join").style.width !== "100%"){
+        document.querySelector(".join").style.width ="100%";
+        document.querySelector(".join").style.height ="100%";
+        document.querySelector(".join").style.top ="0%";
+        document.querySelector("#join_view").style.display = "block";
+        document.querySelector(".Home").style.top="100%";
+        document.querySelector(".Weather").style.top="100%";
+        document.querySelector(".Home").style.opacity="0";
+        document.querySelector(".Weather").style.opacity="0";
+
+    }else{
+        document.querySelector(".Home").style.width ="65%"
+        document.querySelector(".Home").style.height ="562px";
+        document.querySelector(".Home").style.top ="20%";
+        document.querySelector("#Home_view").style.display = 'none';
+
+
+        document.querySelector(".Weather").style.width ="65%";
+        document.querySelector(".Weather").style.height ="562px";
+        document.querySelector(".Weather").style.top="16%";
+        document.querySelector(".Weather").style.opacity="1";
+        document.querySelector(".Home").style.opacity="1";
+
+        document.querySelector(".join").style.width ="65%";
+        document.querySelector(".join").style.height ="562px";
+        document.querySelector(".join").style.top ="12%";
+        document.querySelector(".join").style.opacity="1";
+        document.querySelector("#join_view").style.display='none';
+
+        document.querySelector(".ToDo").style.width ="65%" ;
+        document.querySelector(".ToDo").style.height ="562px";
+        document.querySelector(".ToDo").style.top ="8%"; 
+    }
+   
+    fetch('http://localhost:8001/user')
+    .then(data => {
+        console.log(data)
+        return data.text();
+        
+    })
+    .then(text => {
+       
+        document.querySelector("#join_view").innerHTML = text;
+    })
+});
+
+
+
+
+
+
+document.querySelector(".tb").addEventListener('click', function (event) {
+    if(event.type == 'click' && document.querySelector(".ToDo").style.width !== "100%"){
+        document.querySelector(".ToDo").style.width ="100%";
+        document.querySelector(".ToDo").style.height ="100%";
+        document.querySelector(".ToDo").style.top ="0%";
+        document.querySelector("#board_view").style.display = "block";
+        document.querySelector(".Home").style.top="100%";
+        document.querySelector(".Home").style.opacity="0";
+        document.querySelector(".Weather").style.top="100%";
+        document.querySelector(".Weather").style.opacity="0";
+        document.querySelector(".join").style.top="100%";
+        document.querySelector(".join").style.opacity="0";
+
+        //http://localhost:3000/board/
+        let url = 'http://localhost:8001/board/';
+        fetch(url)
+        .then(result => {
+            return result.text();
+        })
+        .then(text => {
+            document.querySelector('#board_view').innerHTML = text;
+        })
+    } else {
+        document.querySelector(".Home").style.width ="65%"
+        document.querySelector(".Home").style.height ="562px";
+        document.querySelector(".Home").style.top ="20%";
+        document.querySelector("#Home_view").style.display = 'none';
+
+
+        document.querySelector(".Weather").style.width ="65%";
+        document.querySelector(".Weather").style.height ="562px";
+        document.querySelector(".Weather").style.top="16%";
+        document.querySelector(".Weather").style.opacity="1";
+        document.querySelector(".Home").style.opacity="1";
+
+        document.querySelector(".join").style.width ="65%";
+        document.querySelector(".join").style.height ="562px";
+        document.querySelector(".join").style.top ="12%";
+        document.querySelector(".join").style.opacity="1";
+        document.querySelector("#join_view").style.display='none';
+
+        document.querySelector(".ToDo").style.width ="65%" ;
+        document.querySelector(".ToDo").style.height ="562px";
+        document.querySelector(".ToDo").style.top ="8%"; 
+        document.querySelector("#board_view").style.display = "none";
+    }
+    
+
+});
+
+document.querySelector("#userId").addEventListener('click',()=>{
+    document.querySelector(".Home").style.width ="65%"
+    document.querySelector(".Home").style.height ="562px";
+    document.querySelector(".Home").style.top ="20%";
+    document.querySelector(".Home").style.opacity="1";
+    document.querySelector("#Home_view").style.display = "none";
+
+    document.querySelector(".Weather").style.width ="65%";
+    document.querySelector(".Weather").style.height ="562px";
+    document.querySelector(".Weather").style.top="16%";
+    document.querySelector(".Weather").style.opacity="1";
+    document.querySelector("#Weather_view").style.display="none";
+
+    document.querySelector(".join").style.width ="65%";
+    document.querySelector(".join").style.height ="562px";
+    document.querySelector(".join").style.top ="12%";
+    document.querySelector(".join").style.opacity="1";
+    document.querySelector("#join_view").style.display="none";
+
+    document.querySelector(".ToDo").style.width ="65%" ;
+    document.querySelector(".ToDo").style.height ="562px";
+    document.querySelector(".ToDo").style.top ="8%";
+    document.querySelector(".ToDo").style.opacity="1";
+    document.querySelector("#board_view").style.display="none";
+
+})
+
+</script>
+
+<!-- 게시판 스크립트 -->
+<script type="text/javascript">
+    function boardJoin(){
+        let url = 'http://localhost:8001/board/page/join';
+        fetch(url)
+        .then(result => {
+            return result.text();
+        })
+        .then(text => {
+            document.querySelector('#board_view').innerHTML = text;
+        })
+    }
+
+    function postJoin(form){
+        const data = new URLSearchParams();
+        for (const pair of new FormData(form)) {
+            data.append(pair[0], pair[1]);
+        }
+
+        console.log(data);
+        return true;
+        
+        fetch('http://localhost:8001/board/auth/join',{
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        })
+        .then(response =>{
+            return response.text();
+        })
+        .then(text => {
+            console.log(text)
+        })
+    
+    }
+
+</script>
+
+{% if flag == '0' %}
+<script type="text/javascript">
+    alert('아이디와 패스워드가 일치하지 않습니다.')
+</script>
+{% endif %}
+
+
+</body>
+</html>
+

@@ -1,0 +1,37 @@
+
+<div id="user_join">
+        
+    <form action="/user/join_check" method="post" id="login_frm" class="con">
+        <ul>
+            <li>아이디</li>
+            <li><input type="text" name="userid" id="userid" onfocusout="userid_check()" value=""></li>
+
+            <p id="userid_msg">
+
+            </p>
+        </ul>
+        <ul>
+            <li>비밀번호</li>
+            <li><input type="password" name="userpw" id="userpw"></li>
+        </ul>
+        <ul>
+            <li>비밀번호 재확인</li>
+            <li><input type="password" id="userpw_check"></li>
+        </ul>
+        <ul>
+            <li>이름</li>
+            <li><input type="text" name="name"></li>
+        </ul>
+        <ul>
+            <li>성별</li>
+            <li>
+                <input type="radio" id="gender" name="gender" value="0">남자
+                <input type="radio" id="gender" name="gender" value="1">여자
+            </li>
+        </ul>
+        <input type="button" id="login_submit" onclick="btn20()" value="회원가입완료">
+   
+    </form>
+
+</div>
+

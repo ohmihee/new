@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href="../../css/user/user.css">
+</head>
+<body>
+    
+
+{% include header %} 
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<div class="signup_wrapper">
+    <form class= "user_form">
+        <h1>회원가입</h1>
+        <div class = "signup_number">
+            <h5 class= "inblock ft_16">약관동의</h5>
+            <div class= "signup_bar"></div>
+            <h5 class= "inblock ft_16 red">정보입력</h5>
+        </div>
+
+        <p class="signup_text mt20" ><label for="email" >이메일</p>
+        <input type = "email"  id ="email" class= "mt20" name = "email" placehoder="이메일을 입력해주세요">
+        <p class="signup_text mt20" label for="password" >비밀번호</p>
+        <input type = "password" id ="password"  class= "mt20" name = "password" placehoder="비밀번호를 입력해주세요">
+        <div class="signup_bullbox">
+            <ul>
+                <li>영문 대문자 포함</li>
+                <li>영문 소문자 포함</li>
+                <li>숫자 포함</li>
+                <li>10자 이상</li>
+            </ul>
+        </div>
+        <p class="signup_text mt20" label for="password_chk" >비밀번호 확인</p>
+        <input type = "password" id ="password_chk" class= "mt20" placehoder="비밀번호를 다시 입력해주세요">
+        <p class = "signup_capcha mt20">캡챠인증</p>
+        <button class="g-recaptcha" 
+            data-sitekey="reCAPTCHA_site_key" 
+            data-callback='onSubmit' 
+            data-action='submit'>Submit</button>
+        
+        <input type="submit" class = "sign_upbtn submit mt20" value = "작성 완료" disabled>
+
+        </form>
+</div>
+<script>
+    function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+    }
+</script>
+
+<script type = text/javascript src="../../public/user/usersignup_form.js"></script>
+
+{% include footer %}
+</body>
+</html> 

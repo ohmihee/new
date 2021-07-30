@@ -1,0 +1,18 @@
+<!-- {% set res in communityres %}
+                {% for item in res %}
+                <form action="/admin/communuty_read_detail?id=res[loop.index-1].title">
+
+                    <td>res[loop.index-1].title</td>
+                    <td>res[loop.index-1].readaut</td>
+                    <td>res[loop.index-1].writer</td>
+                    <td>res[loop.index-1].enrollmentDate</td>
+                    <td>res[loop.index-1].count</td>
+                    <td>res[loop.index-1].file</td>
+                    <td>
+                        <input type="submit" name="modify[loop.index-1]" value="수정">
+                    </td>
+                    <td>
+                        <input type="submit" name="remove[loop.index-1]" value="삭제">
+                    </td>
+                </form>
+                {% endfor %} -->

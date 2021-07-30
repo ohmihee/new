@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+    <style>
+        #update{
+            display: flex;
+            flex-direction: column;
+        }
+        #update>select, #update>input{
+            width:200px;
+            height: 50px;
+        }
+        form{
+            margin: 40px;
+        }
+    </style>
+</head>
+<body>    
+    <form id="update" action="/admin/col" method="POST">
+        <label for="type">작성유형</label>
+        <select name="type" form="update" id="type">
+            <option value="text">text</option>
+            <option value="img">img</option>
+        </select>
+        <select name="title" form="update" id="update">
+            <option value="인사말">인사말</option>
+            <option value="연혁">연혁</option>
+            <option value="교직원소개">교직원소개</option>
+            <option value="시설소개">시설소개</option>
+            <option value="오시는길">오시는 길</option>
+        </select>
+        <input type="text" value=``name="content">
+        <input type="submit" value="수정">
+    </form>  
+    
+    <form action="/admin/col" id="make_table" method="POST">
+        <label for="title">추가 카테고리명</label>
+        <input type="text" id="title" name="title">
+        <input type="text" value="content" name="content" style="display:none;">
+        <div id="summernote"></div>
+        <button id="input_content">게시글</button>
+        <input type="text" name="make" value="생성" style="display: none;">
+         
+        <label for="form_type">작성형식</label>
+        <select name="form_type" id="form_type" form="make_table">
+            <option value="text">text</option>
+            <option value="img">img</option>
+        </select>
+
+        <input type="submit" value="생성">
+    </form>
+    
+
+
+    <form action="/admin/col" id="remove_table" method="POST">
+    <lable for="table_remove">카테고리삭제</lable>
+    <select name="table_remove" id="table_remove" form="remove_table">
+        <option value="인사말">인사말</option>
+        <option value="연혁">연혁</option>
+        <option value="교직원소개">교직원소개</option>
+        <option value="시설소개">시설소개</option>
+        <option value="오시는길">오시는 길</option>
+    </select>    
+        <input type="text" name="remove" value="삭제" style="display: none;">
+        <input type="submit" value="삭제">
+    </form>
+    
+</body>
+</html>

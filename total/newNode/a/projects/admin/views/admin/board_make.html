@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/board.css">
+</head>
+<body>
+    <div>
+        <form action="/admin/board_make" method="POST" id="board_form">
+            <div id = "top_title">
+                <p>게시판 생성관리 - 원테이블을 사용합니다.</p>
+            </div>
+            <p>게시판 항목 생성하기 (하나의 테이블을 이용합니다.)</p>
+            <table border="1">
+                <td>테이블명</td>
+                <td>게시판명</td>
+                <td>그룹</td>
+                <td>url</td>
+                <td>content</td>
+                <td>읽기권한</td>
+                <td>쓰기권한</td>
+                <td>댓글권한</td>
+                <tr>
+                    <td>
+                        <input type="text" name="tableName">
+                    </td>
+                    <td>
+                        <input type="text" name="subBoard">
+                    </td>
+                    <td>
+                        <select name="mainBoard1" form="board_form">
+                        {% set res = boardres %}
+                        {% for item in res %}
+                            <option value="{{res[loop.index].mainBoard}}">{{res[loop.index-1].mainBoard}}</option>
+                        {% endfor %}
+                        </select>
+                        <input type="text" name="mainBoard">
+                    </td>
+                                  
+                    <td>
+                        <input type="text" name="url">
+                    </td>
+                    <td>
+                        <input type="text" name="contentType">
+                    </td>
+                    <td>
+                        <input type="checkbox" name="watchaut" value="1">
+                    </td>
+                    <td>
+                        <input type="checkbox" name="writeaut" value="1">
+                    </td>
+                    <td>
+                        <input type="checkbox" name="replyaut" value="1">
+                    </td>   
+                </tr>                
+            </table>
+            <input type="submit" value="게시판 생성">
+        </form>
+    </div>
+    <form action="make_board_detail">
+
+    </form>
+    <div>    
+        <form action="/admin/board_manage" method="POST" id="board_manage_form">
+            <p>게시판 수정 관리</p>
+            <table border="1">                
+                <td>번호</td>
+                <td>테이블명</td>
+                <td>게시판이름</td>
+                <td>읽기권한</td>
+                <td>쓰기권한</td>
+                <td>댓글권한</td>
+                <td>contentType</td>
+                <td>그룹</td>
+                <td>수정</td>
+                <td>삭제</td>
+                {% set res = boardres %}
+                {% for item in res %}
+                <tr>
+                    <td>
+                        <input type="text" value="{{[loop.index-1]}}" name="number" >
+                        <input type="number" value="{{res[loop.index-1].id}}" name="numbercheck"  style="display:none">
+                    </td>
+                    <td>
+                        <input type="text" value="테이블명">
+                    </td>
+                    <td>
+                        <input type="text" value="{{res[loop.index-1].subBoard}}" name="subBoard">
+                    </td>
+                    <td>
+                        <input type="text" value="{{res[loop.index-1].watchaut}}" name="watchaut">
+                    </td>
+                    <td>
+                        <input type="text" value="{{res[loop.index-1].writeaut}}" name="writeaut">
+                    </td>
+                    <td>
+                        <input type="text" value="{{res[loop.index-1].replyaut}}" name="replyaut">
+                    </td>
+                    <td>
+                        <input type="text" value="{{res[loop.index-1].contentType}}" name="content">
+                    </td>
+                    <td>
+                        <input type="text"  value="{{res[loop.index-1].mainBoard}}" name="mainBoard">
+                    </td>
+                    <td>                        
+                        <input type="submit" name="{{[loop.index-1]}}" value="수정">
+                    </td>
+                    <td>
+                        <input type="submit" name="{{[loop.index-1]}}" value="삭제">
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+ let
+
+</script>

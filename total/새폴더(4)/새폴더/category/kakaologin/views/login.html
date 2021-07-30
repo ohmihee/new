@@ -1,0 +1,33 @@
+<form action="/login" method="post">
+    <input type="text" name="userid">
+    <input type="password" name="userpw">
+    <input type="submit" value="로그인">
+
+</form>
+
+
+<button id="req">요청테스트</button>
+<span class="root">
+    <!--axios-->
+</span>
+<script type="text/javascript">
+    const btn = document.querySelector('#req');
+    btn.addEventListener('click',()=>{
+        console.log('req click');
+        fetch('http://localhost:3008/login2',{
+            //fetch => 요청을 한다.
+            method:'GET',
+        })  //Promise object
+        .then(data=>{
+            console.log(data);
+            return data.json();
+        })    
+        .json(then=>{
+            console.log(json);
+            const root = document.auerySelecotr('.root');
+            root.innderHTML = json.test;
+            console.log()
+        })
+    })
+
+</script>

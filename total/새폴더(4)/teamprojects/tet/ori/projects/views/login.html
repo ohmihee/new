@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- <script src = '/js/login.js'></script> -->
+</head>
+<body>
+    
+    <form action="/user/login_check" method="post">
+    <div id="login">
+        <ul>
+            <li>
+                <input type="text" name="userid" placeholder="아이디를 입력하세요.">
+            </li>
+            <li>
+                <input type="password" name="userpw" placeholder="비밀번호를 입력하세요.">
+            </li>
+        </ul>
+      
+        <input type="submit" class="bt1" onclick="login()" value="로그인 ">
+    </div>
+</form>
+
+<button class="bt_1" onclick="joinBtn()">회원가입</button>
+
+
+
+
+    

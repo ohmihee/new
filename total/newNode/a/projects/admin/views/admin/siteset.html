@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/main.css">
+</head>
+<body>
+    <div id="website_basic_info">
+        <div id="site_set_title">
+            <p>사이트기본환경설정</p>
+        </div>
+        <form action="/admin/site_set" method="POST" style="border:1px solid black">
+            <ul>
+                <li>
+                    <p>웹사이트 기본정보</p>
+                </li>
+                <li>
+                    <label for="site_name">사이트명</label>
+                    <input type="text" id="site_name" name="siteName" value="경일게임아카데미">
+                    <!-- {{resu.siteName}} -->
+                </li>
+                <li>
+                    <label for="site_url">사이트url</label>
+                    <input type="text" id="site_url" name="siteUrl" value="www.com.www.com">
+                    <!-- {{resu.siteName}} -->
+                </li>
+                <li>
+                    <label for="basic_title">기본타이틀</label>
+                    <input type="text" id="basic_title" name="basicTitle" value="경일게임아카데미에 오신 것을 환영합니다.">
+                    <!-- {{resu.siteName}} -->
+                </li>
+                <li>
+                    <label for="CEO_email">대표이메일</label>
+                    <input type="email" id="CEO_email" name="CEOEmail" value="경일.email">
+                    <!-- {{resu.siteName}} -->
+                </li>
+                <li>
+                    <span>게시판테이블 사용형태</span>
+                    <span>원테이블(하나의 Table을 사용합니다.) (초기 세팅시 지정됩니다. 변경하실 수 없습니다.)</span>
+                    <!-- {{resu.siteName}} -->
+                </li>
+                <input type="submit" value="수정">
+            </ul>
+        </form>
+    </div>
+    <div>
+        <form action="/admin/site_set" method="POST" style="border:1px solid black">
+            <ul>
+                <li>
+                    <p>업체정보</p>
+                </li>
+                <li>
+                    <label for="bus_number">사업자 등록 번호</label>
+                    <input type="number" name="number_1" id="bus_number">
+                    <input type="number" name="number_2" id="bus_number">
+                    <input type="number" name="number_3" id="bus_number">
+                </li>
+                <li>
+                    <label for="CEO_name">대표자명</label>
+                    <input type="text" id="CEO_name" name="CEOName">
+                </li>
+                <li>
+                    <label for="con_tel">통신판매업 신고번호</label>
+                    <input type="text" id="con_tel" name="conTel">
+                </li>
+                <li>
+                    <label for="bus_address">사업장 주소</label>
+                    <input type="text" id="bud_address" name="busAddress">
+                </li>
+                <input type="submit" value="수정">
+            </ul>
+        </form>
+    </div>
+
+</body>
+</html>

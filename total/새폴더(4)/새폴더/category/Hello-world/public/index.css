@@ -1,0 +1,25 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    box-sizing: border-box;
+}
+.board{
+    width:800px;
+}
+.board>table>tr>td{
+    border:1px solid #ddd;
+    width:25px;
+}
+.write_btn{
+    display: inline-flex;
+    padding:7px, 14px;
+    width:80px;
+    height: 30px;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 15px;
+    background:black;
+    color:#fff;
+}
